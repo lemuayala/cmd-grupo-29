@@ -119,6 +119,7 @@ cmd-grupo-29/
 - **Un solo archivo** (`index.html`): no necesita servidor ni instalación. El logo va embebido.
 - **Animaciones**: [GSAP](https://gsap.com/) 3.12 con ScrollTrigger, cargado desde cdnjs.
 - **Accesible**: si el sistema tiene activado *reducir movimiento*, las animaciones se desactivan y todo queda visible.
+- **Sonidos**: el botón **Sonido** de la barra superior los activa (apagados por defecto). Efectos de [Kenney](https://kenney.nl/assets/interface-sounds) (licencia CC0), en `assets/sonidos/`.
 - **Sistema de diseño**: el de la Etapa 4 (tipografía Inter, colores de iOS, tarjetas con desenfoque, modo claro y oscuro).
 
 ## ✏️ Cómo editarlo
