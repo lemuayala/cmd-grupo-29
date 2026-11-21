@@ -122,7 +122,7 @@ function setupCine(){
   $$('.divider').forEach(d=>{const num=d.querySelector('.num');if(!num)return;
     gsap.fromTo(num,{scale:1.9,opacity:0,filter:'blur(30px)'},{scale:1,opacity:1,filter:'blur(0px)',ease:'none',scrollTrigger:{trigger:d,start:'top 95%',end:'top 15%',scrub:true}});
     gsap.to(num,{scale:.55,opacity:.15,yPercent:-30,ease:'none',scrollTrigger:{trigger:d,start:'bottom 85%',end:'bottom top',scrub:true}});});
-  $$('.zoomin').forEach(z=>gsap.fromTo(z,{scale:.84},{scale:1,ease:'none',scrollTrigger:{trigger:z,start:'top bottom',end:'top 45%',scrub:true}}));
-  const lg=$('#portada .logo-card');if(lg)gsap.to(lg,{scale:.7,y:-60,opacity:.2,ease:'none',scrollTrigger:{trigger:'#portada',start:'top top',end:'bottom top',scrub:true}});
+  $$('.zoomin').forEach(z=>{if(z.closest('#portada'))return;gsap.fromTo(z,{scale:.84},{scale:1,ease:'none',scrollTrigger:{trigger:z,start:'top bottom',end:'top 45%',scrub:true}});});
+  const lg=$('#portada .logo-card');if(lg)gsap.fromTo(lg,{scale:1,y:0,opacity:1},{scale:.7,y:-60,opacity:.2,ease:'none',immediateRender:false,scrollTrigger:{trigger:'#portada',start:'top top',end:'bottom top',scrub:true}});
   const lab=$('#laboratorio .doc-frame')||$('#laboratorio .lab');if(lab)gsap.fromTo(lab,{scale:.86,rotateX:8,transformPerspective:1200},{scale:1,rotateX:0,ease:'none',scrollTrigger:{trigger:'#laboratorio',start:'top bottom',end:'top 30%',scrub:true}});
 }
