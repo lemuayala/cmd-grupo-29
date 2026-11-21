@@ -649,6 +649,16 @@ td.mono{font-family:var(--f-mono);letter-spacing:0}
 .cl3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
 @media (max-width:860px){.cl3{grid-template-columns:minmax(0,1fr)}}
 .cl3 p{font-size:1rem}
+
+/* ===== Etapa 4 · interacción sumada ===== */
+#cwList span{cursor:pointer;transition:background .3s,color .3s,transform .3s,box-shadow .3s}
+#cwList span:hover{transform:translateY(-2px)}
+#cwList span.ca{background:var(--k1);color:#fff}
+#cwList span.cb{background:var(--k4);color:#fff}
+#cwList span.cs{background:var(--ok);color:#fff;transform:scale(1.06);box-shadow:0 10px 24px -10px var(--ok)}
+#cwList span.ca small,#cwList span.cb small,#cwList span.cs small{color:rgba(255,255,255,.85)}
+.cwtxt{font-size:.98rem;min-height:1.6em}
+.cwtxt .m{white-space:nowrap}
 </style>
 
 <header class="topbar" aria-label="Barra de la presentación">
@@ -673,7 +683,7 @@ td.mono{font-family:var(--f-mono);letter-spacing:0}
       <button class="stg" data-go="etapa1"><span class="n">Etapa 1</span><span class="t">Modelos en un aula virtual</span><span class="s">Grafos, dígrafos y árboles</span><span class="tm">≈ 3 min</span></button>
       <button class="stg" data-go="etapa2"><span class="n">Etapa 2</span><span class="t">Solicitudes de equivalencia</span><span class="s">Relación de equivalencia</span><span class="tm">≈ 3 min 30 s</span></button>
       <button class="stg" data-go="etapa3"><span class="n">Etapa 3</span><span class="t">Turnos rotativos en una sala</span><span class="s">Grupos cíclicos y ℤ₄</span><span class="tm">≈ 3 min 30 s</span></button>
-      <button class="stg" data-go="inicio"><span class="n">Etapa 4</span><span class="t">El QR que se cura solo</span><span class="s">Códigos de grupo</span><span class="tm">≈ 4 min</span></button>
+      <button class="stg" data-go="etapa4"><span class="n">Etapa 4</span><span class="t">El QR que se cura solo</span><span class="s">Códigos de grupo</span><span class="tm">≈ 4 min</span></button>
     </div>
   </div>
   <div class="scrollcue"><i></i>Deslizá</div>
@@ -1112,10 +1122,22 @@ td.mono{font-family:var(--f-mono);letter-spacing:0}
   </div>
 </section>
 
+<!-- ================= ETAPA 4 · SEPARADOR ================= -->
+<section class="slide inv divider e4" id="etapa4" data-title="Etapa 4">
+  <div class="glow"></div>
+  <div class="in">
+    <div class="num">04</div>
+    <p class="tag r">Etapa 4 · Códigos de grupo y aritmética modular</p>
+    <h2 class="chars">Un QR que se cura solo.</h2>
+    <p class="lead r">Constancias escolares que se verifican con un código de grupo y un dígito verificador en ℤ₁₁.</p>
+    <div class="e1chips r"><span>Módulo 11</span><span>Matriz G</span><span>Subgrupo</span><span>Síndromes</span><span>Entrelazado</span><span>Laboratorio</span></div>
+  </div>
+</section>
+
 <!-- Portada -->
-<section class="slide inv" id="inicio" data-title="Etapa 4">
+<section class="slide inv" id="inicio" data-title="E4 · El QR que se cura solo">
   <div class="in center">
-    <p class="eyebrow r">Etapa 4 · Códigos de grupo y aritmética modular</p>
+    <p class="eyebrow r">Caso de estudio · Constancias escolares</p>
     <div class="hero-qr r" aria-hidden="true"><svg id="heroSvg"></svg><div class="beam" id="heroBeam"></div></div>
     <h1 class="r">El QR que <span class="grad">se cura solo.</span></h1>
     <p class="lead r" style="max-width:46ch">Un código de grupo (7,4), decodificación por síndrome, entrelazado y un dígito verificador en ℤ<sub>11</sub> aplicados a la verificación de constancias escolares.</p>
@@ -1193,6 +1215,26 @@ td.mono{font-family:var(--f-mono);letter-spacing:0}
   </div>
 </section>
 
+<section class="slide" id="mod11c" data-title="E4 · Mod 11 en vivo">
+  <div class="in">
+    <div class="head"><p class="eyebrow r">Probalo</p><h2 class="words">Escribí un número. Equivocate a propósito.</h2></div>
+    <div class="grid2">
+      <div class="card r">
+        <div class="numin"><label for="numIn" class="status">Número de 6 dígitos</label><input id="numIn" inputmode="numeric" maxlength="6" value="482915"><button class="btn small primary" id="calcBtn">Calcular</button></div>
+        <div class="digits" id="digitsRow"></div>
+        <p class="calc" id="calcTxt"></p>
+        <div class="row"><button class="btn small" id="typoBtn">Invertir dos dígitos</button><button class="btn small" id="subBtn">Cambiar un dígito</button><button class="btn small" id="resetNum">Original</button></div>
+        <p class="status" id="numMsg">Este número se usa en todo el laboratorio.</p>
+      </div>
+      <div class="card r">
+        <span class="k">¿Por qué 11 y no 10?</span>
+        <p>En ℤ<sub>10</sub> hay divisores de cero: <span class="m">2 · 5 = 10 ≡ 0</span>. Con peso 2, cambiar un dígito en 5 unidades no altera el resto. En ℤ<sub>11</sub>, <span class="m">2 · 5 ≢ 0</span> y todo no nulo tiene inverso (<span class="m">2 · 6 = 12 ≡ 1</span>).</p>
+        <p class="calc" id="mod10Txt"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Mod 11 · en vivo -->
 
 
@@ -1235,6 +1277,17 @@ td.mono{font-family:var(--f-mono);letter-spacing:0}
       <thead><tr><th>Síndrome s(w)</th><th>Líder de clase e</th><th>Diagnóstico y acción</th></tr></thead>
       <tbody id="synTable"></tbody></table></div>
     <div class="note warn r"><b>Es un código perfecto.</b> <span class="m">16 · (1 + 7) = 128 = 2<sup>7</sup></span>: toda palabra está a distancia ≤ 1 de exactamente una válida. Siempre corrige un error, pero con dos <b>nunca avisa</b>: no hay síndrome de alarma. Por eso sumamos la capa ℤ<sub>11</sub>.</div>
+  </div>
+</section>
+
+<section class="slide alt" id="sindrome2" data-title="E4 · Probar el síndrome">
+  <div class="in">
+    <div class="head"><p class="eyebrow r">Probalo</p><h2 class="words">Tocá bits. Mirá cómo los encuentra.</h2></div>
+    <div class="card r">
+      <div class="row"><span class="status">Dígito enviado</span><div class="pick" id="pick2" role="group" aria-label="Dígito enviado"></div></div>
+      <div class="flipbits" id="flipBits"></div>
+      <div class="calc" id="synTxt"></div>
+    </div>
   </div>
 </section>
 
@@ -1445,25 +1498,7 @@ td.mono{font-family:var(--f-mono);letter-spacing:0}
     </div>
   </div>
 </section>
-<section class="stash" id="mod11c" data-title="Mod 11 en vivo">
-  <div class="in">
-    <div class="head"><p class="eyebrow r">Probalo</p><h2 class="words">Escribí un número. Equivocate a propósito.</h2></div>
-    <div class="grid2">
-      <div class="card r">
-        <div class="numin"><label for="numIn" class="status">Número de 6 dígitos</label><input id="numIn" inputmode="numeric" maxlength="6" value="482915"><button class="btn small primary" id="calcBtn">Calcular</button></div>
-        <div class="digits" id="digitsRow"></div>
-        <p class="calc" id="calcTxt"></p>
-        <div class="row"><button class="btn small" id="typoBtn">Invertir dos dígitos</button><button class="btn small" id="subBtn">Cambiar un dígito</button><button class="btn small" id="resetNum">Original</button></div>
-        <p class="status" id="numMsg">Este número se usa en todo el laboratorio.</p>
-      </div>
-      <div class="card r">
-        <span class="k">¿Por qué 11 y no 10?</span>
-        <p>En ℤ<sub>10</sub> hay divisores de cero: <span class="m">2 · 5 = 10 ≡ 0</span>. Con peso 2, cambiar un dígito en 5 unidades no altera el resto. En ℤ<sub>11</sub>, <span class="m">2 · 5 ≢ 0</span> y todo no nulo tiene inverso (<span class="m">2 · 6 = 12 ≡ 1</span>).</p>
-        <p class="calc" id="mod10Txt"></p>
-      </div>
-    </div>
-  </div>
-</section>
+
 <section class="stash" id="matH" data-title="Matriz H">
   <div class="in">
     <div class="grid2" style="align-items:center">
@@ -1489,16 +1524,7 @@ td.mono{font-family:var(--f-mono);letter-spacing:0}
     <p class="lead r" style="max-width:52ch">Si se envió <span class="m"><i>c</i></span> y llegó <span class="m"><i>w</i> = <i>c</i> ⊕ <i>e</i></span>: <span class="m"><i>s</i>(<i>w</i>) = <i>c</i>·<i>H</i> ⊕ <i>e</i>·<i>H</i> = <i>e</i>·<i>H</i></span>. <b>El síndrome depende solo del error.</b></p>
   </div>
 </section>
-<section class="stash alt" id="sindrome2" data-title="Probar el síndrome">
-  <div class="in">
-    <div class="head"><p class="eyebrow r">Probalo</p><h2 class="words">Tocá bits. Mirá cómo los encuentra.</h2></div>
-    <div class="card r">
-      <div class="row"><span class="status">Dígito enviado</span><div class="pick" id="pick2" role="group" aria-label="Dígito enviado"></div></div>
-      <div class="flipbits" id="flipBits"></div>
-      <div class="calc" id="synTxt"></div>
-    </div>
-  </div>
-</section>
+
 <section class="stash" id="limites" data-title="Límites">
   <div class="in">
     <div class="head"><p class="eyebrow r">Límites del modelo</p><h2 class="words">Dónde se rompe. Y qué hace entonces.</h2></div>
@@ -2068,6 +2094,25 @@ up3w(false);
 
 console.assert(rk(14)==='r²'&&order(2)==='CDAB'&&turno(3,1)===1,'E3 datos');
 return{ciclo:genRun};
+})();
+
+/* ================= Etapa 4 · clausura del subgrupo ================= */
+const E4=(()=>{
+const box=$('#cwList');if(!box)return{};
+const words=[...Array(16)].map((_,x)=>encode(bits4(x)));
+const txt=document.createElement('p');txt.className='cwtxt r';box.after(txt);
+const fmt=c=>c.slice(0,4).join('')+' '+c.slice(4).join('');
+let sel=[];
+function show(){const sp=[...box.children];sp.forEach(s=>s.classList.remove('ca','cb','cs'));
+  if(!sel.length){txt.innerHTML='Tocá dos palabras válidas: su suma ⊕ también está en C.';return;}
+  sp[sel[0]].classList.add('ca');if(sel.length<2){txt.innerHTML='Elegí otra palabra.';return;}
+  sp[sel[1]].classList.add('cb');const s=words[sel[0]].map((b,i)=>b^words[sel[1]][i]);
+  const k=words.findIndex(w=>w.join('')===s.join(''));if(k>=0)sp[k].classList.add('cs');
+  txt.innerHTML=`<span class="m">${fmt(words[sel[0]])} ⊕ ${fmt(words[sel[1]])} = ${fmt(s)}</span> ${k>=0?'<b style="color:var(--ok)">∈ C</b>: es cerrado por ⊕.':'∉ C'}`;}
+box.addEventListener('click',e=>{const t=e.target.closest('#cwList > span');if(!t)return;const i=[...box.children].indexOf(t);sel=sel.length>=2?[i]:sel.includes(i)?sel:[...sel,i];show();});
+show();
+console.assert(words.every(a=>words.every(b=>words.some(w=>w.every((x,i)=>x===(a[i]^b[i]))))),'E4 clausura');
+return{};
 })();
 
 /* ================= Navegación ================= */
