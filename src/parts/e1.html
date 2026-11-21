@@ -1,0 +1,93 @@
+<!-- ================= ETAPA 1 · SEPARADOR ================= -->
+<section class="slide inv divider e1" id="etapa1" data-title="Etapa 1">
+  <div class="glow"></div>
+  <div class="in">
+    <div class="num">01</div>
+    <p class="tag r">Etapa 1 · Grafos, dígrafos y árboles</p>
+    <h2 class="chars">Modelos discretos en un aula virtual.</h2>
+    <p class="lead r">Cinco situaciones de una plataforma educativa, cada una con la estructura que mejor responde su pregunta.</p>
+    <div class="e1chips r"><span>Grafo</span><span>Dígrafo</span><span>Árbol con raíz</span><span>Integración</span><span>Equivalencia y orden</span></div>
+  </div>
+</section>
+
+<!-- E1 · S1 -->
+<section class="slide e1" id="e1-s1" data-title="E1 · Aula virtual">
+  <div class="in">
+    <div class="head"><p class="eyebrow r">Situación 1 · Grafo simple no dirigido</p><h2 class="words">Un aula virtual heredada.</h2></div>
+    <div class="e1split">
+      <div class="card r zoomin">
+        <svg class="g1" id="g1" viewBox="0 0 640 360" role="img" aria-label="Grafo de navegación del aula virtual"></svg>
+      </div>
+      <div class="e1side">
+        <div class="row r"><button class="btn primary small" id="g1Path">Camino mínimo a Entregas</button><button class="btn small" id="g1Cut">Quitar Unidad 1</button></div>
+        <div class="card r e1info" id="g1Info"><span class="k">Tocá una sección</span><p>Cada sección es un vértice y cada enlace entre secciones es una arista.</p></div>
+        <div class="note r"><b>Biblioteca</b> es un vértice aislado: no se llega desde Inicio, solo con la dirección directa.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- E1 · S2 -->
+<section class="slide alt e1" id="e1-s2" data-title="E1 · Capacitación">
+  <div class="in">
+    <div class="head"><p class="eyebrow r">Situación 2 · Dígrafo</p><h2 class="words">Un trayecto con prerrequisitos.</h2></div>
+    <div class="e1split">
+      <div class="card r zoomin">
+        <svg class="g2" id="g2" viewBox="0 0 650 300" role="img" aria-label="Dígrafo de prerrequisitos entre módulos"></svg>
+      </div>
+      <div class="e1side">
+        <div class="row r"><button class="btn primary small" id="g2Cycle">Detectar el ciclo</button><button class="btn small" id="g2Fix" disabled>Eliminar M6 → M2</button><button class="btn small" id="g2Lv" disabled>Ordenar en etapas</button></div>
+        <div class="card r e1info" id="g2Info"><span class="k">Inconsistencia</span><p>M2 figura como módulo inicial, pero requiere M6. Hay una dependencia circular.</p></div>
+        <div class="lv r" id="g2Levels"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- E1 · S3 -->
+<section class="slide e1" id="e1-s3" data-title="E1 · Repositorio">
+  <div class="in">
+    <div class="head"><p class="eyebrow r">Situación 3 · Árbol con raíz</p><h2 class="words">Un repositorio de materiales.</h2></div>
+    <div class="card r zoomin">
+      <div class="row" style="justify-content:space-between"><span class="k">Materia → Unidades → Carpetas → Archivos · 4 niveles</span>
+        <div class="row"><button class="btn primary small" id="g3Pre">Recorrido en preorden</button><button class="btn small" id="g3Share">Compartir «Cómo citar fuentes»</button></div></div>
+      <svg class="g3" id="g3" viewBox="0 0 660 315" role="img" aria-label="Árbol del repositorio de materiales"></svg>
+      <p class="e1trail" id="g3Trail">El recorrido en preorden visita cada carpeta antes que sus archivos y genera un índice ordenado.</p>
+    </div>
+  </div>
+</section>
+
+<!-- E1 · S4 -->
+<section class="slide inv e1" id="e1-s4" data-title="E1 · Integración">
+  <div class="in">
+    <div class="head"><p class="eyebrow r">Situación 4 · Integración de modelos</p><h2 class="words">Tres estructuras, tres preguntas.</h2></div>
+    <div class="stack3" id="stack3">
+      <div class="layer" style="--c:#BF5AF2"><span class="lt">Dígrafo acíclico</span><svg viewBox="0 0 220 90" id="mini2"></svg><span class="lq">¿En qué orden se cursa?</span></div>
+      <div class="layer" style="--c:#FF9F0A"><span class="lt">Árbol con raíz</span><svg viewBox="0 0 220 90" id="mini3"></svg><span class="lq">¿Dónde está cada material?</span></div>
+      <div class="layer" style="--c:#2997FF"><span class="lt">Grafo de navegación</span><svg viewBox="0 0 220 90" id="mini1"></svg><span class="lq">¿A cuántos clics queda cada sección?</span></div>
+    </div>
+    <p class="lead r" style="max-width:56ch">Un único modelo sobrecargaría el análisis. Por eso usamos tres: prerrequisitos sin ciclos, un índice automático y la navegación con <span class="m">d(Inicio, v) ≤ 3</span>.</p>
+  </div>
+</section>
+
+<!-- E1 · S5 -->
+<section class="slide e1" id="e1-s5" data-title="E1 · Perfiles y permisos">
+  <div class="in">
+    <div class="head"><p class="eyebrow r">Situación 5 · Equivalencia y orden</p><h2 class="words">Perfiles y permisos.</h2></div>
+    <div class="grid2">
+      <div class="card r" style="gap:14px">
+        <span class="k">Parte A · Estudiantes: relación de equivalencia</span>
+        <p style="color:var(--muted);font-size:.95rem">Dos estudiantes se relacionan si completaron las mismas actividades. Marcá las de un estudiante.</p>
+        <div class="acts" id="acts"></div>
+        <div class="q16" id="q16"></div>
+        <p style="font-size:.95rem" id="actTxt"></p>
+      </div>
+      <div class="card r" style="gap:14px">
+        <span class="k">Parte B · Roles: orden parcial</span>
+        <p style="color:var(--muted);font-size:.95rem">a ≤ b cuando b tiene todos los permisos de a. Tocá dos roles.</p>
+        <svg class="hasse" id="hasse" viewBox="0 0 300 230" role="img" aria-label="Diagrama de Hasse de los roles"></svg>
+        <div class="vrd" id="roleTxt"><span class="big" id="roleBig">?</span><div class="checks" id="roleWhy"><div>Elegí dos roles.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>

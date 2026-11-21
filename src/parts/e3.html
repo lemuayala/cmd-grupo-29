@@ -1,0 +1,147 @@
+<!-- ================= ETAPA 3 · SEPARADOR ================= -->
+<section class="slide inv divider e3" id="etapa3" data-title="Etapa 3">
+  <div class="glow"></div>
+  <div class="in">
+    <div class="num">03</div>
+    <p class="tag r">Etapa 3 · Grupos cíclicos</p>
+    <h2 class="chars">Turnos rotativos en una sala de informática.</h2>
+    <p class="lead r">Cuatro grupos de estudiantes, cuatro turnos y una distribución que rota cada período.</p>
+    <div class="e1chips r"><span>G = {e, r, r², r³}</span><span>Grupo abeliano</span><span>Cíclico de orden 4</span><span>Subgrupos y Lagrange</span><span>≅ ℤ₄</span></div>
+  </div>
+</section>
+
+<!-- E3 · Sala -->
+<section class="slide e3" id="e3-sala" data-title="E3 · La sala">
+  <div class="in">
+    <div class="head"><p class="eyebrow r">La situación</p><h2 class="words">Todos avanzan un turno.</h2></div>
+    <div class="e1split">
+      <div class="card r zoomin ringcard"><svg id="ring1" role="img" aria-label="Diagrama circular de los cuatro turnos"></svg></div>
+      <div class="e1side">
+        <div class="row r"><button class="btn primary small" id="r1Go">Avanzar un turno · r</button><button class="btn small" id="r1Reset">Reiniciar</button></div>
+        <div class="card r e1info" id="sala1"></div>
+        <div class="dist r" id="dist1"></div>
+        <div class="note r">Cada período, el grupo del turno 4 vuelve al turno 1. Ningún grupo queda siempre en el mismo horario.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- E3 · Grupo -->
+<section class="slide alt e3" id="e3-grupo" data-title="E3 · El grupo">
+  <div class="in">
+    <div class="head"><p class="eyebrow r">El modelo</p><h2 class="words">Componer es sumar exponentes.</h2></div>
+    <div class="grid2">
+      <div class="card r zoomin" style="gap:14px">
+        <span class="k">Tabla de la operación · tocá una celda</span>
+        <div class="cay" id="cay1"></div>
+      </div>
+      <div class="e1side">
+        <div class="card r e1info"><span class="k">El conjunto</span><p><span class="m">G = {e, r, r², r³}</span>. <b>e</b> no cambia nada, <b>r</b> avanza un lugar, <b>r²</b> dos y <b>r³</b> tres.</p></div>
+        <div class="card r e1info" id="cay1Txt"></div>
+        <div class="note r">Los exponentes se suman <b>módulo 4</b>: después de cuatro desplazamientos se vuelve a la distribución inicial.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- E3 · Propiedades -->
+<section class="slide e3" id="e3-propiedades" data-title="E3 · Propiedades">
+  <div class="in">
+    <div class="head"><p class="eyebrow r">Propiedades de grupo</p><h2 class="words">Un grupo, y además abeliano.</h2></div>
+    <div class="row r"><button class="btn primary" id="p3Go">Verificar clausura</button><button class="btn" id="p3Reset">Reiniciar</button></div>
+    <div class="p3grid">
+      <div class="card p3"><span class="k">Clausura</span><p class="ex">r² ∘ r³ = r</p><p class="why">Toda composición da otra rotación de G: la tabla solo tiene e, r, r² y r³.</p></div>
+      <div class="card p3"><span class="k">Asociatividad</span><p class="ex">(r ∘ r²) ∘ r³ = r ∘ (r² ∘ r³)</p><p class="why">Las dos dan r², porque sumar exponentes es asociativo.</p></div>
+      <div class="card p3"><span class="k">Neutro</span><p class="ex">e ∘ x = x ∘ e = x</p><p class="why">e es la rotación que no cambia nada.</p></div>
+      <div class="card p3"><span class="k">Inversos</span><p class="ex">r ∘ r³ = e · r² ∘ r² = e</p><p class="why">Cada rotación se deshace: si avanzo uno, avanzando tres más vuelvo al inicio.</p></div>
+      <div class="card p3"><span class="k">Conmutatividad</span><p class="ex">r ∘ r² = r² ∘ r = r³</p><p class="why">El orden no cambia el resultado: la tabla es simétrica respecto de la diagonal.</p></div>
+    </div>
+    <div class="note ok concl" id="p3Concl"><b>Conclusión:</b> (G, ∘) es un grupo, y como además es conmutativo, es un <b>grupo abeliano</b>.</div>
+  </div>
+</section>
+
+<!-- E3 · Cíclico y subgrupos -->
+<section class="slide alt e3" id="e3-ciclico" data-title="E3 · Cíclico y subgrupos">
+  <div class="in">
+    <div class="head"><p class="eyebrow r">Grupo cíclico de orden 4</p><h2 class="words">Una sola rotación lo genera todo.</h2></div>
+    <div class="grid2">
+      <div class="card r" style="gap:14px">
+        <span class="k">Elegí un generador y repetilo</span>
+        <div class="row seg" id="genSeg"><button class="btn small" data-gen="1" aria-pressed="true">r</button><button class="btn small" data-gen="2" aria-pressed="false">r²</button><button class="btn small" data-gen="3" aria-pressed="false">r³</button><button class="btn primary small" id="genGo">Generar</button></div>
+        <div class="pow" id="pow"></div>
+        <p id="genTxt" style="font-size:.98rem"></p>
+      </div>
+      <div class="card r" style="gap:14px">
+        <span class="k">Subgrupos de G</span>
+        <div class="sgs">
+          <div class="sg" id="sg4"><span class="m">G = {e, r, r², r³}</span><span class="o">orden 4</span></div>
+          <div class="sgl"></div>
+          <div class="sg" id="sg2"><span class="m">{e, r²}</span><span class="o">orden 2</span></div>
+          <div class="sgl"></div>
+          <div class="sg" id="sg1"><span class="m">{e}</span><span class="o">orden 1</span></div>
+        </div>
+        <p style="font-size:.95rem;color:var(--muted)">Los órdenes 1, 2 y 4 dividen a 4, como pide el <b style="color:var(--text)">teorema de Lagrange</b>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- E3 · Isomorfismo -->
+<section class="slide e3" id="e3-iso" data-title="E3 · Isomorfismo con ℤ₄">
+  <div class="in">
+    <div class="head"><p class="eyebrow r">Isomorfismo</p><h2 class="words">Rotar es sumar módulo 4.</h2></div>
+    <div class="isomap r"><span>e ↔ 0</span><span>r ↔ 1</span><span>r² ↔ 2</span><span>r³ ↔ 3</span><span class="m">φ(rᵏ) = k</span></div>
+    <div class="grid2">
+      <div class="card r zoomin" style="gap:12px"><span class="k">(G, ∘) · rotaciones</span><div class="cay" id="cayG"></div></div>
+      <div class="card r zoomin" style="gap:12px"><span class="k">(ℤ₄, +₄) · restos</span><div class="cay" id="cayZ"></div></div>
+    </div>
+    <div class="card r e1info" id="isoTxt"></div>
+  </div>
+</section>
+
+<!-- E3 · Coevaluación -->
+<section class="slide alt e3" id="e3-coeval" data-title="E3 · ¿Y si avanzan dos?">
+  <div class="in">
+    <div class="head"><p class="eyebrow r">Pregunta de la coevaluación</p><h2 class="words">¿Y si avanzan dos turnos?</h2></div>
+    <div class="e1split">
+      <div class="card r zoomin ringcard"><svg id="ring2" role="img" aria-label="Simulador de rotación con paso uno o dos"></svg></div>
+      <div class="e1side">
+        <div class="row r seg" id="c2Seg"><button class="btn small" data-step="1" aria-pressed="false">Paso r</button><button class="btn small" data-step="2" aria-pressed="true">Paso r²</button></div>
+        <div class="row r"><button class="btn primary small" id="c2Go">Avanzar</button><button class="btn small" id="c2Reset">Reiniciar</button></div>
+        <div class="seen r" id="c2Seen"></div>
+        <div class="card r e1info" id="c2Txt"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- E3 · Predecir una semana -->
+<section class="slide e3" id="e3-semana" data-title="E3 · Predecir una semana">
+  <div class="in">
+    <div class="head"><p class="eyebrow r">Para qué sirve</p><h2 class="words">Cualquier semana con un resto.</h2></div>
+    <div class="e1split">
+      <div class="card r zoomin ringcard"><svg id="ring3" role="img" aria-label="Distribución de turnos en la semana elegida"></svg></div>
+      <div class="e1side">
+        <div class="card r" style="gap:12px">
+          <span class="k">Elegí la semana</span>
+          <input type="range" id="wk" min="0" max="52" value="14" aria-label="Semana">
+          <div class="wkout" id="wkOut"></div>
+        </div>
+        <div class="dist r" id="dist3"></div>
+        <div class="note r">No hace falta contar semana por semana: alcanza con dividir por 4 y mirar el resto.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- E3 · Cierre -->
+<section class="slide inv e3" id="e3-cierre" data-title="E3 · Conclusión">
+  <div class="in">
+    <div class="head"><p class="eyebrow r">Conclusión</p><h2 class="words">Un modelo simple que predice.</h2></div>
+    <div class="cl3">
+      <div class="card r"><span class="k">Lo que logra</span><p>Representa la rotación de turnos con un grupo cíclico y predice cualquier semana con un resto.</p></div>
+      <div class="card r"><span class="k">Supuestos ideales</span><p>No contempla ausencias de estudiantes, feriados ni fallas de los equipos.</p></div>
+      <div class="card r"><span class="k">Mejoras</span><p>Un diagrama circular de los desplazamientos, como el de esta presentación, y adaptar el modelo a situaciones reales.</p></div>
+    </div>
+  </div>
+</section>
