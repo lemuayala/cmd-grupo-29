@@ -4,6 +4,10 @@ Todos los cambios visibles de la presentación. Formato basado en [Keep a Change
 
 ## [Sin publicar]
 
+### Agregado
+
+- Efectos de sonido (Kenney Interface Sounds, CC0) para cambiar de pantalla, pulsar botones, seleccionar, escanear, abrir y cerrar el teatro, y al completar la demostración de resistencia. Se activan con el botón **Sonido**; apagados por defecto.
+
 ### Documentación
 
 - El README muestra la portada y las pantallas interactivas de cada etapa, con capturas y GIFs.
