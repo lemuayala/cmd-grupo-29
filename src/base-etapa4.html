@@ -1,0 +1,1378 @@
+<title>El QR que se cura solo · corta</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+/* Presentación estilo Apple: una idea por pantalla, tipografía grande y apretada, tarjetas de vidrio, colores del sistema iOS. */
+:root{
+  --bg:#FBFBFD; --bg-2:#F5F5F7; --surface:rgba(255,255,255,.78); --solid:#FFFFFF; --fill:rgba(118,118,128,.12); --fill-2:rgba(118,118,128,.20);
+  --line:rgba(0,0,0,.09); --text:#1D1D1F; --muted:#6E6E73; --navy:#1D1D1F;
+  --accent:#007AFF; --accent-soft:rgba(0,122,255,.10); --indigo:#5856D6; --purple:#AF52DE;
+  --ok:#248A3D; --ok-soft:rgba(52,199,89,.14); --err:#D70015; --err-soft:rgba(255,59,48,.12); --warn:#C93400; --warn-soft:rgba(255,149,0,.14);
+  --blk-i:rgba(0,122,255,.10); --blk-a:rgba(52,199,89,.14);
+  --paper:#FBF8F0; --shadow:0 2px 6px rgba(0,0,0,.04),0 18px 48px -12px rgba(0,0,0,.14);
+  --f:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Inter","Helvetica Neue",Arial,sans-serif;
+  --f-mono:"SF Mono","JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  --f-math:"STIX Two Text","Cambria Math","Times New Roman",serif;
+  --f-doc:"EB Garamond","Garamond","Times New Roman",serif;
+  --r:22px; color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#000; --bg-2:#0B0B0C; --surface:rgba(28,28,30,.72); --solid:#1C1C1E; --fill:rgba(118,118,128,.24); --fill-2:rgba(118,118,128,.36);
+  --line:rgba(255,255,255,.12); --text:#F5F5F7; --muted:#A1A1A6; --navy:#F5F5F7;
+  --accent:#0A84FF; --accent-soft:rgba(10,132,255,.18); --indigo:#5E5CE6; --purple:#BF5AF2;
+  --ok:#30D158; --ok-soft:rgba(48,209,88,.16); --err:#FF453A; --err-soft:rgba(255,69,58,.16); --warn:#FF9F0A; --warn-soft:rgba(255,159,10,.16);
+  --blk-i:rgba(10,132,255,.20); --blk-a:rgba(48,209,88,.18); --shadow:0 0 0 1px rgba(255,255,255,.06),0 24px 60px -20px rgba(0,0,0,.8); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#000; --bg-2:#0B0B0C; --surface:rgba(28,28,30,.72); --solid:#1C1C1E; --fill:rgba(118,118,128,.24); --fill-2:rgba(118,118,128,.36);
+  --line:rgba(255,255,255,.12); --text:#F5F5F7; --muted:#A1A1A6; --navy:#F5F5F7;
+  --accent:#0A84FF; --accent-soft:rgba(10,132,255,.18); --indigo:#5E5CE6; --purple:#BF5AF2;
+  --ok:#30D158; --ok-soft:rgba(48,209,88,.16); --err:#FF453A; --err-soft:rgba(255,69,58,.16); --warn:#FF9F0A; --warn-soft:rgba(255,159,10,.16);
+  --blk-i:rgba(10,132,255,.20); --blk-a:rgba(48,209,88,.18); --shadow:0 0 0 1px rgba(255,255,255,.06),0 24px 60px -20px rgba(0,0,0,.8); color-scheme:dark}
+/* Pantallas "cine": siempre oscuras */
+.inv{--bg:#000; --bg-2:#0B0B0C; --surface:rgba(28,28,30,.72); --solid:#1C1C1E; --fill:rgba(118,118,128,.24); --fill-2:rgba(118,118,128,.36);
+  --line:rgba(255,255,255,.12); --text:#F5F5F7; --muted:#A1A1A6; --navy:#F5F5F7; --accent:#2997FF; --accent-soft:rgba(41,151,255,.18);
+  --ok:#30D158; --ok-soft:rgba(48,209,88,.16); --err:#FF453A; --err-soft:rgba(255,69,58,.16); --warn:#FF9F0A; --warn-soft:rgba(255,159,10,.16);
+  --blk-i:rgba(10,132,255,.20); --blk-a:rgba(48,209,88,.18); color-scheme:dark; background:#000; color:var(--text)}
+*{box-sizing:border-box}
+html{scroll-snap-type:y mandatory;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--f);font-size:17px;line-height:1.47;letter-spacing:-.012em;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3{margin:0;color:var(--navy);text-wrap:balance}
+h1{font-size:clamp(2.8rem,8vw,6.2rem);font-weight:700;letter-spacing:-.045em;line-height:1.02}
+h2{font-size:clamp(2rem,5.2vw,4rem);font-weight:700;letter-spacing:-.038em;line-height:1.06}
+h3{font-size:clamp(1.15rem,1.7vw,1.4rem);font-weight:600;letter-spacing:-.02em;line-height:1.2}
+p{margin:0}
+a{color:var(--accent)}
+button,select,input{font:inherit;color:inherit;letter-spacing:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:10px}
+.grad{background:linear-gradient(90deg,#2997FF 0%,#7A5CFF 45%,#C86DD7 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.grad2{background:linear-gradient(90deg,#30D158,#2997FF);-webkit-background-clip:text;background-clip:text;color:transparent}
+.eyebrow{font-size:clamp(1rem,1.5vw,1.2rem);font-weight:600;color:var(--accent);letter-spacing:-.01em}
+.lead{font-size:clamp(1.1rem,1.9vw,1.5rem);color:var(--muted);font-weight:500;line-height:1.35;max-width:38ch;letter-spacing:-.02em}
+.lead b{color:var(--text);font-weight:600}
+.small{font-size:.86rem;color:var(--muted)}
+.m{font-family:var(--f-math);font-size:1.08em;letter-spacing:0}
+.mono{font-family:var(--f-mono);letter-spacing:0}
+.op{font-family:"Cambria Math","STIX Two Math","DejaVu Sans","Segoe UI Symbol",sans-serif;font-size:.9em;line-height:1}
+
+/* Diapositivas */
+.slide{min-height:100vh;min-height:100svh;scroll-snap-align:start;display:grid;align-content:center;position:relative;
+  padding:max(84px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) 64px max(16px,env(safe-area-inset-left));overflow:hidden}
+.slide.alt{background:var(--bg-2)}
+.in{max-width:1120px;width:100%;margin:0 auto;display:grid;gap:clamp(18px,2.6vw,32px)}
+.in.center{justify-items:center;text-align:center}
+.in.center .lead{margin-inline:auto}
+.head{display:grid;gap:12px}
+
+/* Barra, progreso y puntos */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:50;height:calc(48px + env(safe-area-inset-top));padding:env(safe-area-inset-top) max(16px,env(safe-area-inset-right)) 0 max(16px,env(safe-area-inset-left));
+  display:flex;align-items:center;gap:12px;background:color-mix(in srgb,var(--bg) 72%,transparent);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:.5px solid var(--line)}
+.topbar .brand{font-weight:600;font-size:.95rem;white-space:nowrap;flex:1;letter-spacing:-.02em}
+.topbar .now{font-size:.82rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:40vw}
+.progress{position:fixed;left:0;top:calc(48px + env(safe-area-inset-top));height:2px;background:var(--accent);width:0;z-index:51}
+.rail{position:fixed;right:max(14px,env(safe-area-inset-right));top:50%;transform:translateY(-50%);z-index:40;display:grid;gap:9px}
+.rail a{width:7px;height:7px;border-radius:50%;background:var(--fill-2);display:block;transition:transform .3s,background .3s}
+.rail a.on{background:var(--accent);transform:scale(1.5)}
+@media (max-width:760px){.rail{display:none}.topbar .now{display:none}html{scroll-snap-type:y proximity}#fsBtn{display:none}}
+.topbar button{white-space:nowrap}
+html.loose{scroll-snap-type:y proximity}
+body.on-inv .topbar{background:rgba(0,0,0,.55);border-bottom-color:rgba(255,255,255,.12);color:#f5f5f7}
+body.on-inv .topbar .now{color:rgba(245,245,247,.6)}
+body.on-inv .topbar button{color:#2997FF}
+
+/* Botones y controles iOS */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.45em;border:none;background:var(--fill);padding:.62em 1.15em;border-radius:980px;cursor:pointer;font-weight:500;font-size:.95rem;transition:transform .15s,background .2s;color:var(--accent);-webkit-tap-highlight-color:transparent}
+.btn:hover{background:var(--fill-2)}
+.btn:active{transform:scale(.96)}
+.btn.primary{background:var(--accent);color:#fff}
+.btn.primary:hover{filter:brightness(1.08)}
+.btn.small{font-size:.85rem;padding:.45em .95em}
+.btn.plain{background:none;padding:.4em .6em}
+.btn[aria-pressed="true"]{background:var(--accent);color:#fff}
+.link{color:var(--accent);background:none;border:none;cursor:pointer;font-weight:500;padding:0}
+.seg{display:inline-flex;background:var(--fill);border-radius:10px;padding:2px;gap:2px;flex-wrap:wrap}
+.seg button{border:none;background:none;padding:.42em .9em;border-radius:8px;font-size:.85rem;font-weight:500;cursor:pointer;color:var(--text)}
+.seg button[aria-pressed="true"]{background:var(--solid);box-shadow:0 3px 8px rgba(0,0,0,.12),0 0 0 .5px rgba(0,0,0,.04)}
+select{appearance:none;-webkit-appearance:none;max-width:100%;background:var(--fill) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path d='M1 1.5l5 5 5-5' fill='none' stroke='%238E8E93' stroke-width='1.8' stroke-linecap='round'/></svg>") no-repeat right 12px center;border:none;border-radius:10px;padding:.5em 2.2em .5em .85em;font-size:.9rem}
+.switch{display:inline-flex;align-items:center;gap:8px;font-size:.88rem;color:var(--muted);cursor:pointer}
+.switch input{appearance:none;-webkit-appearance:none;width:46px;height:28px;border-radius:99px;background:var(--fill-2);position:relative;cursor:pointer;transition:background .25s;margin:0}
+.switch input::after{content:"";position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 2px 5px rgba(0,0,0,.25);transition:transform .25s}
+.switch input:checked{background:#34C759}
+.switch input:checked::after{transform:translateX(18px)}
+
+/* Tarjetas */
+.card{background:var(--surface);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-radius:var(--r);padding:clamp(18px,2.2vw,28px);display:grid;gap:12px;align-content:start;min-width:0;box-shadow:var(--shadow)}
+.card .k{font-size:.8rem;color:var(--muted);font-weight:600;letter-spacing:.01em}
+.src{font-size:.8rem;color:var(--muted)}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:start}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+@media (max-width:900px){.grid3,.grid2{grid-template-columns:minmax(0,1fr)}.grid4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.grid4{grid-template-columns:minmax(0,1fr)}}
+.note{border-radius:18px;padding:16px 18px;background:var(--accent-soft);font-size:.98rem}
+.note.ok{background:var(--ok-soft)}.note.warn{background:var(--warn-soft)}
+.note b{font-weight:600}
+.big{font-size:clamp(2.6rem,6vw,4.6rem);font-weight:700;letter-spacing:-.045em;line-height:1}
+.stat{display:grid;gap:4px}
+.stat .v{font-family:var(--f-math);font-size:clamp(2rem,4vw,3rem);line-height:1.05;white-space:nowrap}
+.stat p{color:var(--muted);font-size:.95rem}
+.reqs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;text-align:left}
+@media (max-width:820px){.reqs{grid-template-columns:minmax(0,1fr)}}
+.reqs .card .big{font-size:2.4rem}
+
+table{border-collapse:collapse;width:100%;font-size:.94rem}
+th,td{text-align:left;padding:.7em .9em;border-bottom:.5px solid var(--line);vertical-align:top}
+thead th{font-size:.78rem;color:var(--muted);font-weight:600;letter-spacing:.01em}
+.tcard{background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow);overflow-x:auto}
+tr.hl td{background:var(--accent-soft)}
+td.mono{font-family:var(--f-mono);letter-spacing:0}
+.tag{display:inline-flex;align-items:center;gap:.35em;font-size:.8rem;padding:.2em .6em;border-radius:99px;white-space:nowrap;font-weight:600}
+.tag.ok{color:var(--ok);background:var(--ok-soft)}.tag.bad{color:var(--err);background:var(--err-soft)}.tag.warn{color:var(--warn);background:var(--warn-soft)}.tag.info{color:var(--accent);background:var(--accent-soft)}
+
+.hbars{display:grid;gap:12px}
+.hbar{display:grid;grid-template-columns:minmax(120px,240px) minmax(0,1fr) 4.6em;gap:12px;align-items:center;font-size:.95rem}
+.hbar .tr{height:12px;background:var(--fill);border-radius:99px;overflow:hidden}
+.hbar .tr span{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#2997FF,#7A5CFF)}
+.hbar .pc{font-family:var(--f-mono);text-align:right;font-weight:600}
+@media (max-width:560px){.hbar{grid-template-columns:minmax(0,1fr) 4.6em}.hbar .tr{grid-column:1/-1;grid-row:2}}
+
+/* Matrices */
+.mx{display:inline-flex;align-items:center;gap:12px;font-family:var(--f-math);font-size:clamp(1.05rem,1.8vw,1.3rem);flex-wrap:wrap}
+.bm{position:relative;display:inline-grid;padding:4px 12px;row-gap:3px}
+.bm::before,.bm::after{content:"";position:absolute;top:0;bottom:0;width:7px;border:1.6px solid currentColor}
+.bm::before{left:0;border-right:none}.bm::after{right:0;border-left:none}
+.bm .row{display:flex;gap:3px}
+.bm .c{width:1.9em;text-align:center;padding:2px 0;border-radius:6px}
+.bm .c.i{background:var(--blk-i)}.bm .c.a{background:var(--blk-a)}
+.bm .row.on .c{box-shadow:inset 0 0 0 1.5px var(--accent)}
+.bm .row.hit .c{background:var(--ok-soft)!important;box-shadow:inset 0 0 0 1.5px var(--ok)}
+.rl{display:grid;row-gap:3px;font-size:.78rem;color:var(--muted);font-family:var(--f);padding:4px 0}
+.rl span{height:calc(1.95em + 1px);display:flex;align-items:center}
+.cw{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.cw span{font-family:var(--f-mono);font-size:.92rem;text-align:center;padding:.6em 0;border-radius:14px;background:var(--fill);letter-spacing:0}
+.cw span small{display:block;font-size:.72rem;color:var(--muted);font-family:var(--f)}
+@media (max-width:520px){.cw{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.proof{display:grid;gap:8px}
+.eq{font-family:var(--f-math);font-size:clamp(1.05rem,1.8vw,1.3rem);padding:12px 16px;background:var(--fill);border-radius:14px;overflow-x:auto;white-space:nowrap;letter-spacing:0}
+
+/* Módulo 11 */
+.digits{display:flex;gap:8px;flex-wrap:wrap}
+.dg{width:50px;display:grid;gap:3px;text-align:center;font-family:var(--f-mono)}
+.dg .d{font-size:1.45rem;font-weight:600;background:var(--fill);border-radius:12px;padding:6px 0}
+.dg .w,.dg .p{font-size:.78rem;color:var(--muted)}
+.dg.ver .d{background:var(--accent);color:#fff}
+.dg.chg .d{background:var(--err);color:#fff}
+.numin{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.numin input{font-family:var(--f-mono);font-size:1.25rem;width:9ch;padding:.35em .7em;border-radius:12px;border:none;background:var(--fill);letter-spacing:.14em}
+.calc{font-family:var(--f-math);font-size:1.1rem;overflow-wrap:anywhere;letter-spacing:0}
+.clock{width:min(260px,70vw);height:auto}
+.pick{display:flex;gap:6px;flex-wrap:wrap}
+.pick button{width:40px;height:40px;border-radius:12px;border:none;background:var(--fill);cursor:pointer;font-family:var(--f-mono);font-size:1rem}
+.pick button[aria-pressed="true"]{background:var(--accent);color:#fff;font-weight:600}
+.xor{font-family:var(--f-mono);display:grid;gap:4px;letter-spacing:0}
+.xor .res{border-top:.5px solid var(--line);padding-top:6px;font-weight:600;color:var(--accent)}
+.flipbits{display:flex;gap:6px;flex-wrap:wrap}
+.flipbits button{width:44px;height:52px;border-radius:12px;border:none;background:var(--fill);cursor:pointer;font-family:var(--f-mono);font-size:1.2rem;display:grid;place-items:center;line-height:1;transition:transform .15s}
+.flipbits button:active{transform:scale(.92)}
+.flipbits button small{font-size:.6rem;color:var(--muted);font-family:var(--f)}
+.flipbits button.one{background:var(--text);color:var(--bg)}
+.flipbits button.one small{color:var(--bg);opacity:.7}
+.flipbits button.err{box-shadow:0 0 0 2.5px var(--err)}
+.flipbits .gap{width:10px}
+.status{font-size:.88rem;color:var(--muted)}
+
+/* ===== Documento realista ===== */
+.doc{position:relative;max-width:700px;width:100%;color:#1E1E1E;font-family:var(--f-doc);padding:14px;border-radius:3px;letter-spacing:0;
+  background:#EFEADB url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='36' height='14'><g fill='none' stroke='%237E9C96' stroke-width='.7' opacity='.85'><path d='M0 7 Q9 0 18 7 T36 7'/><path d='M0 7 Q9 14 18 7 T36 7'/><path d='M0 3 Q9 10 18 3 T36 3' opacity='.5'/><path d='M0 11 Q9 4 18 11 T36 11' opacity='.5'/></g></svg>");
+  box-shadow:0 1px 1px rgba(0,0,0,.1),0 30px 60px -24px rgba(0,0,0,.55)}
+.doc-frame{position:relative;background:var(--paper);border:1px solid #9BB0AB;outline:3px double #9BB0AB;outline-offset:-7px;padding:22px 26px 18px;overflow:hidden;overflow:clip;
+  background-image:radial-gradient(ellipse at 30% 20%,rgba(255,255,255,.6),transparent 60%),radial-gradient(ellipse at 80% 90%,rgba(170,150,110,.10),transparent 55%)}
+.doc-wm{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;font-family:var(--f);font-weight:700;font-size:clamp(1.6rem,6vw,3rem);letter-spacing:.2em;color:rgba(160,40,40,.07);transform:rotate(-24deg);white-space:nowrap}
+.doc-head{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;border-bottom:1px solid #C9C0A8;padding-bottom:10px}
+.doc-head svg{width:46px;height:46px}
+.inst{font-size:1.02rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;line-height:1.2}
+.inst-s{font-size:.82rem;font-style:italic;color:#555}
+.doc-flag{font-family:var(--f);font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#A32020;border:1.5px solid #A32020;padding:3px 6px;border-radius:3px;text-align:center;line-height:1.3}
+.doc-title{font-family:var(--f-doc);color:#1E1E1E;text-align:center;text-transform:uppercase;letter-spacing:.14em;font-size:clamp(1.05rem,2.6vw,1.35rem);font-weight:600;margin:14px 0 8px}
+.doc-body{font-size:1rem;line-height:1.55;text-align:justify;hyphens:auto}
+.doc-body .fill{border-bottom:1px dotted #777;padding:0 3px;font-style:italic}
+.doc-foot{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:end;margin-top:12px}
+.sigs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-self:end;position:relative}
+.sig{display:grid;justify-items:center;font-size:.72rem;color:#444;text-align:center;line-height:1.2}
+.sig svg{width:100%;max-width:120px;height:38px}
+.sig i{display:block;width:100%;border-top:1px solid #555;margin-bottom:3px}
+.stampx{position:absolute;left:28%;bottom:4px;width:92px;height:92px;transform:rotate(-14deg);opacity:.78;pointer-events:none}
+.qrside{display:grid;justify-items:center;gap:4px}
+.qrbox{width:clamp(150px,20vw,180px);background:#fff;touch-action:none;position:relative;line-height:0}
+.qrbox svg{width:100%;height:auto;display:block;cursor:crosshair}
+.qrcap{font-family:var(--f);font-size:.62rem;color:#333;text-align:center;line-height:1.3;letter-spacing:.04em;text-transform:uppercase}
+.serial{display:block;font-family:"Courier New",var(--f-mono);font-size:.95rem;color:#A32020;letter-spacing:.08em;text-transform:none;font-weight:700}
+@media (max-width:560px){.doc-frame{padding:16px 14px 14px}.doc-foot{grid-template-columns:minmax(0,1fr)}.qrside{justify-self:center}.stampx{left:auto;right:6px;bottom:auto;top:-10px}.doc-head{grid-template-columns:auto minmax(0,1fr)}.doc-flag{grid-column:1/-1;justify-self:start}}
+
+/* ===== Portada ===== */
+#inicio .in{gap:22px}
+.inst-lock{display:flex;align-items:center;gap:12px;justify-content:center;font-size:.95rem;color:var(--muted);font-weight:500}
+.inst-lock .mark{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,#2997FF,#7A5CFF);color:#fff;font-weight:700;font-size:.8rem;letter-spacing:-.02em}
+.inst-lock .mark img{width:100%;height:100%;object-fit:contain}
+.inst-lock b{color:var(--text);font-weight:600;display:block}
+.hero-qr{width:min(260px,58vw,30svh);background:#fff;border-radius:28px;padding:20px;box-shadow:0 40px 120px -30px rgba(41,151,255,.55),0 0 0 1px rgba(255,255,255,.08);position:relative;overflow:hidden}
+.hero-qr svg{width:100%;height:auto;display:block}
+.hero-qr .beam{position:absolute;left:0;right:0;height:3px;background:#2997FF;box-shadow:0 0 16px 4px rgba(41,151,255,.7);opacity:0;top:0}
+.names{display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:center;font-size:clamp(.95rem,1.5vw,1.1rem);font-weight:500}
+.names span{white-space:nowrap}
+.meta{font-size:.9rem;color:var(--muted)}
+.scrollcue{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);font-size:.8rem;color:var(--muted);display:grid;justify-items:center;gap:6px}
+.scrollcue i{width:22px;height:34px;border:2px solid var(--muted);border-radius:12px;position:relative}
+.scrollcue i::after{content:"";position:absolute;left:50%;top:6px;width:3px;height:7px;margin-left:-1.5px;border-radius:2px;background:var(--muted);animation:cue 1.6s infinite}
+@keyframes cue{0%{opacity:0;transform:translateY(0)}40%{opacity:1}100%{opacity:0;transform:translateY(10px)}}
+
+/* distancia */
+.dist svg{width:100%;height:auto}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+
+/* casos */
+.flip{perspective:1000px;min-height:200px;cursor:pointer;border:none;background:none;padding:0;text-align:left}
+.flip .inner{position:relative;width:100%;height:100%;min-height:200px;transition:transform .7s cubic-bezier(.2,.8,.2,1);transform-style:preserve-3d}
+.flip.on .inner{transform:rotateY(180deg)}
+.flip .face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:var(--solid);border-radius:var(--r);padding:20px;display:grid;gap:8px;align-content:start;box-shadow:var(--shadow)}
+.flip .back{transform:rotateY(180deg);background:var(--fill)}
+.flip.dim{opacity:.35;transition:opacity .5s}
+
+.mini{display:flex;gap:28px;flex-wrap:wrap;align-items:center}
+.mini .qrwrap{width:min(300px,100%);background:#fff;padding:10px;border-radius:22px;box-shadow:var(--shadow)}
+.mini svg{width:100%;height:auto;display:block}
+
+/* ===== Laboratorio ===== */
+.lab{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:28px;align-items:start}
+@media (max-width:900px){.lab{grid-template-columns:minmax(0,1fr)}}
+.lab>*,.lab>*>*{min-width:0}
+.tools{display:grid;gap:12px}
+.toolrow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.toolrow label{font-size:.85rem;color:var(--muted)}
+.dock{display:grid;gap:14px;justify-items:center;align-content:start;position:relative;z-index:30}
+.hint{font-size:.83rem;color:var(--muted);text-align:center}
+
+/* ===== Celular ===== */
+.phone{--pw:210px;width:var(--pw);aspect-ratio:9/19;position:relative;border-radius:calc(var(--pw)*.17);padding:calc(var(--pw)*.035);cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;
+  background:linear-gradient(145deg,#5D636B 0%,#2A2E34 22%,#1A1C20 50%,#3A3F46 78%,#6B7178 100%);
+  box-shadow:0 0 0 1px #0A0B0D,0 30px 60px -18px rgba(0,0,0,.65),0 10px 18px -8px rgba(0,0,0,.4);will-change:transform}
+.phone:active{cursor:grabbing}
+.phone::before,.phone::after{content:"";position:absolute;width:3px;border-radius:2px;background:linear-gradient(#4A4F57,#24272C)}
+.phone::before{left:-3px;top:22%;height:9%;box-shadow:0 calc(var(--pw)*.2) 0 #34383E}
+.phone::after{right:-3px;top:28%;height:13%}
+.ph-screen{position:relative;width:100%;height:100%;border-radius:calc(var(--pw)*.14);overflow:hidden;background:#000;box-shadow:inset 0 0 0 calc(var(--pw)*.012) #050505}
+.desk{position:absolute;inset:0;background:radial-gradient(ellipse at 40% 30%,#6E6457,#3E372F 70%)}
+.feed{position:absolute;inset:0;transform-origin:50% 50%;pointer-events:none}
+.feed>.doc{position:absolute;margin:0;filter:saturate(.9) contrast(1.05) brightness(.97)}
+.vign{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.45));mix-blend-mode:multiply}
+.ovl{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.island{position:absolute;top:calc(var(--pw)*.055);left:50%;transform:translateX(-50%);width:30%;height:calc(var(--pw)*.085);border-radius:99px;background:#000;z-index:3}
+.cam-top{position:absolute;top:calc(var(--pw)*.17);left:0;right:0;display:flex;justify-content:center;z-index:2}
+.cam-top span{font-family:var(--f);font-size:calc(var(--pw)*.05);color:#fff;background:rgba(0,0,0,.45);padding:2px 9px;border-radius:99px;backdrop-filter:blur(8px)}
+.brk{position:absolute;inset:26% 16%;pointer-events:none;z-index:2}
+.brk i{position:absolute;width:18%;height:12%;border:2.5px solid rgba(255,255,255,.92);border-radius:4px;transition:border-color .2s}
+.brk i:nth-child(1){left:0;top:0;border-right:none;border-bottom:none}
+.brk i:nth-child(2){right:0;top:0;border-left:none;border-bottom:none}
+.brk i:nth-child(3){left:0;bottom:0;border-right:none;border-top:none}
+.brk i:nth-child(4){right:0;bottom:0;border-left:none;border-top:none}
+.phone.locked .brk i{border-color:#FFD60A}
+.cam-bot{position:absolute;left:0;right:0;bottom:0;height:22%;background:linear-gradient(transparent,rgba(0,0,0,.65));display:grid;justify-items:center;align-content:end;gap:6px;padding-bottom:9%;z-index:2}
+.cam-bot .modes{font-family:var(--f);font-size:calc(var(--pw)*.045);color:rgba(255,255,255,.7);letter-spacing:.08em;display:flex;gap:10px}
+.cam-bot .modes b{color:#FFD60A;font-weight:600}
+.cam-bot .shutter{width:calc(var(--pw)*.2);aspect-ratio:1;border-radius:50%;border:3px solid #fff;background:rgba(255,255,255,.9);box-shadow:inset 0 0 0 3px #000}
+.toast{position:absolute;left:50%;top:60%;transform:translateX(-50%);font-family:var(--f);font-size:calc(var(--pw)*.052);background:rgba(30,30,30,.82);backdrop-filter:blur(10px);color:#fff;padding:6px 12px;border-radius:12px;white-space:nowrap;opacity:0;z-index:4;display:flex;gap:6px;align-items:center}
+.toast i{width:8px;height:8px;border-radius:50%;background:#FFD60A;display:inline-block}
+.idle{position:absolute;inset:0;display:grid;place-items:center;z-index:1;pointer-events:none;transition:opacity .2s}
+.idle span{font-family:var(--f);font-size:calc(var(--pw)*.055);color:#fff;background:rgba(0,0,0,.5);padding:4px 10px;border-radius:9px;text-align:center;margin-top:60%}
+@media (max-width:900px){.phone{--pw:170px}}
+
+/* ===== Teatro (hoja iOS) ===== */
+.theater{position:fixed;inset:0;z-index:80;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:saturate(180%) blur(30px);-webkit-backdrop-filter:saturate(180%) blur(30px);display:grid;grid-template-rows:auto 1fr auto;
+  padding:calc(env(safe-area-inset-top) + 18px) max(16px,env(safe-area-inset-right)) calc(env(safe-area-inset-bottom) + 16px) max(16px,env(safe-area-inset-left))}
+.theater[hidden]{display:none!important}
+.th-head{display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap;justify-content:space-between;max-width:1120px;width:100%;margin:0 auto}
+.th-step{font-size:.85rem;color:var(--accent);font-weight:600}
+.th-title{font-size:clamp(1.5rem,3.4vw,2.4rem);font-weight:700;letter-spacing:-.035em;line-height:1.1}
+.th-text{color:var(--muted);max-width:70ch;margin-top:6px;font-size:1rem}
+.th-controls{display:flex;gap:8px;flex-wrap:wrap}
+.stage{overflow:auto;display:grid;place-items:center;padding:16px 0;max-width:1120px;width:100%;margin:0 auto}
+.stage-inner{width:100%;display:grid;justify-items:center;gap:22px}
+.th-foot{max-width:1120px;width:100%;margin:0 auto;display:flex;gap:6px}
+.th-foot i{flex:1;height:4px;border-radius:4px;background:var(--fill-2)}
+.th-foot i.on{background:var(--accent)}
+.bitgrid{display:grid;gap:5px}
+.bit{width:clamp(28px,5vw,42px);aspect-ratio:1;border-radius:9px;display:grid;place-items:center;font-family:var(--f-mono);font-weight:600;font-size:clamp(.85rem,1.9vw,1.1rem);background:var(--fill);transition:background .3s,color .3s}
+.bit.one{background:var(--text);color:var(--bg)}
+.bit.err{background:var(--err);color:#fff}
+.bit.fix{background:var(--ok);color:#fff}
+.bit.hit{box-shadow:0 0 0 2.5px var(--accent)}
+.bit.dim{opacity:.3}
+.bit.miss{box-shadow:inset 0 0 0 2.5px var(--warn)}
+.cards{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.wcard{background:var(--solid);border-radius:16px;padding:10px;display:grid;gap:4px;justify-items:center;min-width:62px;box-shadow:var(--shadow)}
+.wcard .hd{font-size:.72rem;color:var(--muted)}
+.wcard .col{display:grid;gap:3px}
+.wcard .bit{width:28px;font-size:.82rem;border-radius:7px}
+.wcard .val{font-size:1.7rem;font-weight:700;letter-spacing:-.03em}
+.capture{display:flex;gap:28px;flex-wrap:wrap;justify-content:center;align-items:center}
+.capture .sym{width:min(300px,80vw);background:#fff;border-radius:18px;padding:10px;box-shadow:var(--shadow)}
+.capture .sym svg{width:100%;height:auto;display:block}
+.legend2{display:grid;gap:8px;font-size:.92rem;max-width:330px}
+.legend2 span{display:flex;gap:8px;align-items:center}
+.legend2 i{width:14px;height:14px;border-radius:4px;display:inline-block;flex:none}
+.detail{display:flex;gap:30px;align-items:flex-start;flex-wrap:wrap;justify-content:center}
+.detail .colw{display:grid;gap:5px;justify-items:center}
+.lbl{font-size:.78rem;color:var(--muted);margin-bottom:4px}
+.acc{min-width:220px;font-family:var(--f-mono);display:grid;gap:6px;letter-spacing:0}
+.acc .ln{display:flex;gap:10px;align-items:center}
+.acc .ln .who{color:var(--muted);font-size:.85rem;width:5.5em}
+.acc .tot{border-top:.5px solid var(--line);padding-top:8px;font-size:1.4rem;font-weight:600;color:var(--accent)}
+.verdict{font-size:1.1rem;max-width:60ch;text-align:center}
+.vrow{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.rphone{--pw:250px;cursor:default}
+.rscreen{position:absolute;inset:0;background:#F2F2F7;color:#111;display:grid;align-content:center;justify-items:center;gap:12px;padding:18% 10% 12%;text-align:center;font-family:var(--f)}
+.rscreen .app{font-size:.78rem;color:#6E6E73;font-weight:600}
+.rscreen .rn{font-family:var(--f-mono);font-size:1.3rem;font-weight:600}
+.rscreen .msg{font-size:.85rem;color:#3A3A3C}
+.seal{width:100px;height:100px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:.85rem;color:#fff}
+.seal.ok{background:#34C759}.seal.bad{background:#FF3B30}.seal.warn{background:#FF9500}
+
+.bars{display:grid;gap:12px}
+.bar{display:grid;grid-template-columns:minmax(120px,220px) minmax(0,1fr);gap:12px;align-items:center}
+.bar .nm{font-size:.92rem}
+.bar .tr{display:flex;height:14px;border-radius:99px;overflow:hidden;background:var(--fill)}
+.bar .tr span{height:100%;transition:width .9s cubic-bezier(.2,.8,.2,1)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:.86rem;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}
+@media (max-width:520px){.bar{grid-template-columns:minmax(0,1fr)}}
+.sources{font-size:.86rem;color:var(--muted);display:grid;gap:4px;text-align:left}
+.wd{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em}
+.wd>span{display:inline-block}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
+</style>
+
+<header class="topbar" aria-label="Barra de la presentación">
+  <span class="brand">El QR que se cura solo</span>
+  <span class="now" id="nowTxt"></span>
+  <button class="btn plain small" id="fsBtn" title="Pantalla completa (tecla F)">Pantalla completa</button>
+  <button class="btn plain small" id="themeBtn" title="Cambiar entre claro y oscuro">Tema</button>
+</header>
+<div class="progress" id="progress"></div>
+<nav class="rail" id="rail" aria-label="Pantallas"></nav>
+
+<main>
+<!-- Portada -->
+<section class="slide inv" id="inicio" data-title="Portada">
+  <div class="in center">
+    <div class="inst-lock r"><span class="mark" id="logoMark">FI</span><span style="text-align:left">Universidad Nacional de Jujuy<b>Facultad de Ingeniería</b></span></div>
+    <div class="hero-qr r" aria-hidden="true"><svg id="heroSvg"></svg><div class="beam" id="heroBeam"></div></div>
+    <h1 class="r">El QR que <span class="grad">se cura solo.</span></h1>
+    <p class="lead r" style="max-width:46ch">Un código de grupo (7,4), decodificación por síndrome, entrelazado y un dígito verificador en ℤ<sub>11</sub> aplicados a la verificación de constancias escolares.</p>
+    <div class="names r"><span>Lemuel Ayala</span><span>Nadia Lorena Burgos</span><span>Inés Beatriz Coraite</span><span>René Iván Mamani</span></div>
+    <p class="meta r">Grupo 29 · Complementos de Matemática Discreta · Proyecto integrador, Etapa 4<br>Licenciatura en Informática Educativa · Segundo cuatrimestre de 2026</p>
+    <div class="row r" style="justify-content:center"><button class="btn primary" id="startBtn">Comenzar</button><button class="btn" id="replayHero">Ver la animación</button></div>
+  </div>
+  <div class="scrollcue"><i></i>Deslizá</div>
+</section>
+
+<!-- Problemática 1 -->
+<section class="slide" id="contexto" data-title="Contexto">
+  <div class="in">
+    <div class="head"><p class="eyebrow r">La problemática</p><h2 class="words">Los documentos escolares ya se verifican con un QR.</h2></div>
+    <div class="grid3">
+      <article class="card r"><span class="k">Jujuy · 2026</span><h3>Boletín de Calificaciones Digital</h3><p>Rige desde junio de 2026 (Res. 1017-E-26). Las notas se cargan en SINIDE/SGE y el boletín lleva un QR de verificación.</p><p class="src"><a href="https://www.todojujuy.com/jujuy/boletin-calificaciones-digital-jujuy-que-es-y-como-funciona-n291343" target="_blank" rel="noopener">Todo Jujuy, 08/06/2026</a></p></article>
+      <article class="card r"><span class="k">Argentina · 2025</span><h3>Títulos con QR contra un registro</h3><p>Los títulos secundarios emitidos desde el 1/11/2023 se descargan con un QR que se verifica en tiempo real contra el Registro Federal de Egresos (ReFE).</p><p class="src"><a href="https://www.iprofesional.com/tecnologia/420861-mi-argentina-lanza-la-verificacion-digital-de-titulos-con-codigo-qr-asi-funciona" target="_blank" rel="noopener">iProfesional, 16/01/2025</a> · Disp. 15/2025</p></article>
+      <article class="card r"><span class="k">Jujuy · interior</span><h3>Papel, fotocopia y turnos</h3><p>La autenticación de títulos en papel sigue siendo presencial y con turno; en el interior, solo en fechas puntuales. El documento viaja impreso, doblado y fotocopiado.</p><p class="src"><a href="https://www.todojujuy.com/ministerio-educacion-como-autentificar-el-titulo-n231816" target="_blank" rel="noopener">Todo Jujuy, 14/03/2023</a></p></article>
+    </div>
+    <p class="lead r">El número de una constancia llega al sistema por <b>dos canales con ruido</b>: la cámara que escanea el QR y la persona que lo tipea.</p>
+  </div>
+</section>
+
+<!-- Problemática 2 -->
+
+
+<!-- Problemática 3 -->
+
+
+<!-- Formulación -->
+
+
+<!-- Integridad -->
+
+
+<!-- Soluciones -->
+
+
+<!-- Teorema de capacidad -->
+
+
+<!-- Casos -->
+
+
+<!-- Elegido -->
+<section class="slide inv" id="elegido" data-title="Caso elegido">
+  <div class="in center">
+    <p class="eyebrow r">El caso elegido</p>
+    <h2 class="words" style="max-width:18ch">Una constancia con un QR que se lee aunque esté dañado.</h2>
+    <div class="grid3" style="text-align:left">
+      <div class="card r"><span class="k">El dato</span><div style="font-family:var(--f-mono);font-size:2rem;font-weight:600;letter-spacing:0" id="caseNum">482915-8</div><p style="color:var(--muted)">Seis dígitos y un verificador en ℤ<sub>11</sub>.</p></div>
+      <div class="card r"><span class="k">Del número a los bits</span><p>Cada dígito <span class="m"><i>x</i></span> se escribe con 4 bits, <span class="m"><i>x</i> ∈ ℤ<sub>2</sub><sup>4</sup></span>, y se codifica en <span class="m">ℤ<sub>2</sub><sup>7</sup></span>: 7 palabras, 49 bits.</p></div>
+      <div class="card r"><span class="k">De los bits al papel</span><p>Las 7 palabras van como <b>columnas</b> de una zona de datos de 7 × 7 dentro de un símbolo de 21 × 21.</p></div>
+    </div>
+    <p class="lead r" style="max-width:52ch"><b>Pregunta de decisión:</b> ¿cómo ubicar los bits y qué capas usar para que un rayón no obligue a reescanear, y un daño mayor se rechace en lugar de aceptarse?</p>
+  </div>
+</section>
+
+<!-- Mod 11 · idea -->
+
+
+<!-- Mod 11 · definición y teoremas -->
+<section class="slide alt" id="mod11b" data-title="Teoremas mod 11">
+  <div class="in">
+    <div class="head"><p class="eyebrow r">Definición y teoremas</p><h2 class="words">Por qué 11 atrapa todos estos errores.</h2></div>
+    <div class="card proof r">
+      <span class="k">Definición</span>
+      <p>Para <span class="m"><i>d</i><sub>1</sub>…<i>d</i><sub>6</sub></span> se elige <span class="m"><i>d</i><sub>7</sub> ∈ ℤ<sub>11</sub></span> tal que</p>
+      <p class="eq">7<i>d</i><sub>1</sub> + 6<i>d</i><sub>2</sub> + 5<i>d</i><sub>3</sub> + 4<i>d</i><sub>4</sub> + 3<i>d</i><sub>5</sub> + 2<i>d</i><sub>6</sub> + 1<i>d</i><sub>7</sub> ≡ 0 (mod 11)</p>
+      <p style="color:var(--muted)">Si los seis primeros términos dejan resto <span class="m"><i>r</i></span>, entonces <span class="m"><i>d</i><sub>7</sub> = (11 − <i>r</i>) mod 11</span>. Si da 10 se escribe X, como en el ISBN-10.</p>
+    </div>
+    <div class="grid2">
+      <div class="card proof r"><span class="k">Teorema 1 · toda sustitución</span><p>Cambiar <span class="m"><i>d<sub>k</sub></i></span> por <span class="m"><i>d<sub>k</sub></i>′</span> altera la suma en <span class="m"><i>w<sub>k</sub></i>(<i>d<sub>k</sub></i>′ − <i>d<sub>k</sub></i>)</span>. Ambos factores son no nulos en ℤ<sub>11</sub>. Como 11 es <b>primo</b>, ℤ<sub>11</sub> es un cuerpo sin divisores de cero: el producto no es múltiplo de 11.</p></div>
+      <div class="card proof r"><span class="k">Teorema 2 · toda transposición</span><p>Intercambiar <span class="m"><i>d<sub>i</sub></i></span> y <span class="m"><i>d<sub>j</sub></i></span> altera la suma en <span class="m">(<i>w<sub>i</sub></i> − <i>w<sub>j</sub></i>)(<i>d<sub>j</sub></i> − <i>d<sub>i</sub></i>)</span>. Los pesos son distintos, así que <span class="m"><i>w<sub>i</sub></i> − <i>w<sub>j</sub></i> ∈ {±1,…,±6}</span>: otra vez, producto de no nulos.</p></div>
+    </div>
+    <p class="note r" style="margin-top:16px"><b>¿Por qué 11 y no 10?</b> En ℤ<sub>10</sub>, <span class="m">2 · 5 ≡ 0</span>: con peso 2, cambiar un dígito en 5 unidades pasa inadvertido. En ℤ<sub>11</sub>* todo elemento tiene inverso (es un grupo abeliano), así que nada se escapa.</p>
+  </div>
+</section>
+
+<!-- Mod 11 · en vivo -->
+
+
+<!-- G -->
+<section class="slide alt" id="matG" data-title="Matriz G">
+  <div class="in">
+    <div class="head"><p class="eyebrow r">Capa 2 · código de grupo binario (7,4)</p><h2 class="words">La matriz generadora G = [ I₄ | A ].</h2>
+    <p class="lead r" style="max-width:60ch">Espacio <span class="m">(ℤ<sub>2</sub><sup>7</sup>, ⊕)</span>, con ⊕ la suma módulo 2 bit a bit: <span class="m">1 ⊕ 1 = 0</span>. Codificar es <span class="m"><i>c</i> = <i>x</i> · <i>G</i></span>: sumar las filas de G donde el dato tiene un 1.</p></div>
+    <div class="grid2" style="align-items:center">
+      <div class="card r" style="justify-items:center"><div class="mx"><span><i>G</i> =</span><div class="bm" id="gMat"></div></div><p class="small">Azul: identidad (el dato se copia). Verde: <span class="m"><i>A</i></span> (los 3 bits de control).</p></div>
+      <div class="card r"><span class="k">Elegí un dígito</span><div class="pick" id="pick" role="group" aria-label="Elegí un dígito"></div><div class="xor" id="xorBox"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- H -->
+
+
+<!-- Subgrupo -->
+<section class="slide alt" id="subgrupo" data-title="Subgrupo">
+  <div class="in">
+    <div class="head"><p class="eyebrow r">Estructura algebraica</p><h2 class="words">Las 16 palabras válidas forman un subgrupo.</h2></div>
+    <div class="cw r" id="cwList"></div>
+    <div class="grid3">
+      <div class="card proof r"><span class="k">Homomorfismo</span><p><span class="m"><i>f</i>(<i>w</i>) = <i>w</i> · <i>H</i></span>, de ℤ<sub>2</sub><sup>7</sup> en ℤ<sub>2</sub><sup>3</sup>, cumple <span class="m"><i>f</i>(<i>u</i> ⊕ <i>v</i>) = <i>f</i>(<i>u</i>) ⊕ <i>f</i>(<i>v</i>)</span>.</p></div>
+      <div class="card proof r"><span class="k">Núcleo</span><p><span class="m">C = ker <i>f</i></span>. El núcleo de un homomorfismo es un subgrupo: C es cerrado por ⊕, y <span class="m"><i>d</i><sub>min</sub></span> es su menor peso no nulo.</p></div>
+      <div class="card proof r"><span class="k">Orden</span><p><span class="m">|C| = 2<sup>4</sup> = 16</span> de <span class="m">2<sup>7</sup> = 128</span>. Pesos: 0, 3, 4 y 7, así que <span class="m"><i>d</i><sub>min</sub> = 3</span>: <b>detecta 2 o corrige 1</b>, no las dos cosas a la vez.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Lagrange -->
+
+
+<!-- Tabla de síndromes -->
+<section class="slide" id="sindrome" data-title="Síndromes">
+  <div class="in">
+    <div class="head"><p class="eyebrow r">Tabla de síndromes</p><h2 class="words">Cada síndrome señala un bit.</h2></div>
+    <div class="tcard r"><table>
+      <thead><tr><th>Síndrome s(w)</th><th>Líder de clase e</th><th>Diagnóstico y acción</th></tr></thead>
+      <tbody id="synTable"></tbody></table></div>
+    <div class="note warn r"><b>Es un código perfecto.</b> <span class="m">16 · (1 + 7) = 128 = 2<sup>7</sup></span>: toda palabra está a distancia ≤ 1 de exactamente una válida. Siempre corrige un error, pero con dos <b>nunca avisa</b>: no hay síndrome de alarma. Por eso sumamos la capa ℤ<sub>11</sub>.</div>
+  </div>
+</section>
+
+<!-- Síndrome interactivo -->
+
+
+<!-- Entrelazado -->
+<section class="slide" id="entrelazado" data-title="Entrelazado">
+  <div class="in">
+    <div class="head"><p class="eyebrow r">Capa 3 · entrelazado</p><h2 class="words">Una ráfaga se vuelve siete errores aislados.</h2>
+    <p class="lead r" style="max-width:62ch">La columna <span class="m"><i>j</i></span> de la zona de datos es la palabra del dígito <span class="m"><i>j</i></span>. Un rayón horizontal toca <b>un bit de cada palabra</b>, y cada una lo corrige con su síndrome.</p></div>
+    <div class="mini">
+      <div class="qrwrap r"><svg id="miniSvg" aria-label="Símbolo con la zona de datos coloreada por palabra"></svg></div>
+      <div style="display:grid;gap:12px;min-width:0;flex:1" class="r">
+        <div class="seg" role="group" aria-label="Orden"><button id="segCol" aria-pressed="true">Por columnas</button><button id="segRow" aria-pressed="false">Por filas</button></div>
+        <div class="row"><button class="btn small primary" id="miniScratch">Pasar un rayón</button><button class="btn small" id="miniClear">Limpiar</button></div>
+        <p id="miniTxt" style="font-size:1.05rem"></p>
+        <p class="small">Símbolo didáctico de 21 × 21 con patrones de posición y sincronismo como los de un QR. Los QR reales usan Reed–Solomon sobre GF(256), con niveles que recuperan ~7 %, 15 %, 25 % o 30 % (ISO/IEC 18004). El principio es el mismo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Laboratorio -->
+<section class="slide alt" id="laboratorio" data-title="Laboratorio · final">
+  <div class="in">
+    <div class="head"><p class="eyebrow r">Laboratorio</p><h2 class="words">Dañala. Escaneala.</h2><p class="small r">Rayá con el dedo o el mouse sobre la zona de datos, o usá los botones. Después arrastrá el celular sobre el código, o tocá <b>Escanear</b>.</p></div>
+    <div class="lab">
+      <div style="display:grid;gap:14px;min-width:0">
+        <div class="doc r" id="doc">
+          <div class="doc-frame">
+            <div class="doc-wm">MODELO DIDÁCTICO</div>
+            <div class="doc-head">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="none" stroke="#2D4B6E" stroke-width="1.4"/><circle cx="24" cy="24" r="18.5" fill="none" stroke="#2D4B6E" stroke-width=".6"/><path d="M12 30 L24 33 L36 30 L36 17 L24 20 L12 17 Z M24 20 L24 33" fill="none" stroke="#2D4B6E" stroke-width="1.3" stroke-linejoin="round"/><path d="M24 9 l1.4 3 3.2.3-2.4 2.1.7 3.1L24 15.9l-2.9 1.6.7-3.1-2.4-2.1 3.2-.3z" fill="#2D4B6E"/></svg>
+              <div><div class="inst">Escuela Secundaria Rural N.º 0 «De Ejemplo»</div><div class="inst-s">Institución ficticia · Puna jujeña · CUE 000000-00</div></div>
+              <div class="doc-flag">Modelo didáctico<br>sin valor oficial</div>
+            </div>
+            <h3 class="doc-title">Constancia de alumno regular</h3>
+            <p class="doc-body">Se deja constancia de que <span class="fill">ESTUDIANTE DE EJEMPLO</span>, D.N.I. N.º <span class="fill">00.000.000</span>, es alumno/a regular de <span class="fill">3.er año, 1.ª división</span>, Ciclo Básico, durante el ciclo lectivo <span class="fill">2026</span>. A pedido de la persona interesada y para ser presentada ante quien corresponda, se extiende la presente en la localidad de <span class="fill">Ejemplo</span>, a los <span class="fill">21</span> días del mes de <span class="fill">noviembre</span> de <span class="fill">2026</span>.</p>
+            <div class="doc-foot">
+              <div class="sigs">
+                <div class="sig"><svg viewBox="0 0 120 38"><path d="M6 28 C14 8 22 34 30 18 S42 6 46 24 S58 34 64 16 C70 4 78 30 86 22 S104 12 114 18" fill="none" stroke="#1E2A6E" stroke-width="1.5" stroke-linecap="round"/></svg><i></i>Secretaría</div>
+                <div class="sig"><svg viewBox="0 0 120 38"><path d="M8 24 C18 4 26 30 34 22 C40 16 44 30 52 26 C64 20 60 6 72 10 S84 32 94 24 S108 14 116 20 M30 30 L90 28" fill="none" stroke="#1E2A6E" stroke-width="1.5" stroke-linecap="round"/></svg><i></i>Dirección</div>
+                <svg class="stampx" viewBox="0 0 100 100" aria-hidden="true"><defs><path id="stc" d="M50 50 m-36 0 a36 36 0 1 1 72 0 a36 36 0 1 1 -72 0"/></defs><g fill="none" stroke="#4B3A86"><circle cx="50" cy="50" r="46" stroke-width="2.2"/><circle cx="50" cy="50" r="27" stroke-width="1.2"/></g><text font-family="Arial,sans-serif" font-size="8.6" font-weight="700" fill="#4B3A86" letter-spacing="1.2"><textPath href="#stc">ESCUELA DE EJEMPLO • DATOS FICTICIOS •</textPath></text><text x="50" y="47" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="700" fill="#4B3A86">MODELO</text><text x="50" y="58" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#4B3A86">2026</text></svg>
+              </div>
+              <div class="qrside">
+                <div class="qrbox" id="qrbox"><svg id="labSvg" aria-label="Código de la constancia"></svg></div>
+                <div class="qrcap">Verificá esta constancia<span class="serial" id="paperNum">N.º 482915-8</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card tools r">
+          <div class="toolrow"><select id="method" aria-label="Método de codificación">
+              <option value="hcol">Hamming (7,4) por columnas + verificador (propuesta)</option>
+              <option value="hrow">Hamming (7,4) por filas + verificador</option>
+              <option value="par">Paridad por columna + verificador</option>
+              <option value="ver">Solo dígito verificador</option>
+              <option value="none">Sin código</option>
+            </select>
+            <select id="speed" aria-label="Velocidad"><option value="cine">Continua</option><option value="clase">Paso a paso</option><option value="rapida">Rápida</option></select></div>
+          <div class="toolrow">
+            <select id="rowSel" aria-label="Fila de datos"></select>
+            <button class="btn small" id="scratch1">Rayón</button>
+            <button class="btn small" id="scratch2">Doble rayón</button>
+            <button class="btn small" id="stain">Mancha</button>
+            <button class="btn small" id="randomDmg">Aleatorio</button>
+            <button class="btn small" id="resetDmg">Restaurar</button>
+          </div>
+          <div class="toolrow"><label class="switch"><input type="checkbox" id="zoneChk" checked> Marcar zona de datos</label><span class="status" id="dmgTxt"></span></div>
+        </div>
+      </div>
+      <div class="dock r">
+        <div class="phone" id="phone" tabindex="0" role="button" aria-label="Celular con la cámara abierta: arrastralo sobre el código o presioná Enter para escanear">
+          <div class="ph-screen" id="phScreen">
+            <div class="desk"></div><div class="feed" id="feed"></div><div class="vign"></div>
+            <svg class="ovl" id="ovl"></svg>
+            <div class="cam-top"><span>Escáner de códigos</span></div>
+            <div class="brk"><i></i><i></i><i></i><i></i></div>
+            <div class="idle" id="idle"><span>Apuntá al código</span></div>
+            <div class="toast" id="toast"><i></i><span id="toastTxt">Código detectado</span></div>
+            <div class="cam-bot"><div class="modes"><span>FOTO</span><b>ESCÁNER</b><span>VIDEO</span></div><div class="shutter"></div></div>
+          </div>
+          <div class="island"></div>
+        </div>
+        <button class="btn primary" id="scanBtn">Escanear</button>
+        <p class="hint">Arrastrá el celular hasta que el código entre en el recuadro.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Límites -->
+
+
+<!-- Comparación -->
+
+
+<!-- Resistencia -->
+
+
+<!-- Cierre -->
+
+</main>
+<div id="stash" hidden aria-hidden="true"><section class="stash alt" id="canal1" data-title="Canal óptico">
+  <div class="in">
+    <div class="head"><p class="eyebrow r">Canal 1 · la cámara</p><h2 class="words">Un rayón invierte módulos vecinos.</h2>
+    <p class="lead r">El lector umbraliza cada módulo: negro → 1, blanco → 0. Si cada módulo se invierte con probabilidad <span class="m"><i>p</i></span> (canal binario simétrico), un número de 28 bits sin protección se lee mal con probabilidad <span class="m">1 − (1 − <i>p</i>)<sup>28</sup></span>.</p></div>
+    <div class="grid3">
+      <div class="card r stat"><span class="k">p = 0,1 % por módulo</span><span class="v"><span data-count="2.76">2,76</span> %</span><p>sin código · con Hamming: <b>0,015 %</b></p></div>
+      <div class="card r stat"><span class="k">p = 1 % por módulo</span><span class="v"><span data-count="24.53">24,53</span> %</span><p>sin código · con Hamming: <b>1,41 %</b></p></div>
+      <div class="card r stat"><span class="k">p = 5 % por módulo</span><span class="v"><span data-count="76.22">76,22</span> %</span><p>sin código · con Hamming: <b>27,22 %</b></p></div>
+    </div>
+    <p class="small r">Con Hamming (7,4) en 7 palabras, el número falla solo si alguna palabra recibe 2 o más errores: <span class="m">1 − [(1−<i>p</i>)<sup>7</sup> + 7<i>p</i>(1−<i>p</i>)<sup>6</sup>]<sup>7</sup></span>. El modelo supone errores independientes; las ráfagas se tratan con el entrelazado.</p>
+  </div>
+</section>
+<section class="stash" id="canal2" data-title="Canal humano">
+  <div class="in">
+    <div class="head"><p class="eyebrow r">Canal 2 · la persona</p><h2 class="words">Casi 9 de cada 10 errores de tipeo son de dos tipos.</h2></div>
+    <div class="card r">
+      <span class="k">Clasificación de 12 112 errores reales en números de 6 dígitos</span>
+      <div class="hbars" id="verhoeff"></div>
+      <p class="src">J. Verhoeff, <i>Error Detecting Decimal Codes</i>, Mathematical Centre Tracts 29, Amsterdam, 1969.</p>
+    </div>
+    <p class="lead r">Un dígito cambiado y dos dígitos vecinos invertidos suman el <b>89,3 %</b>. Un verificador módulo 11 detecta <b>los dos, siempre</b>.</p>
+  </div>
+</section>
+<section class="stash inv" id="formulacion" data-title="El problema">
+  <div class="in center">
+    <p class="eyebrow r">Formulación del problema</p>
+    <h2 class="words" style="max-width:20ch">Codificar el número para que el papel dañado no mienta.</h2>
+    <div class="reqs">
+      <div class="card r"><span class="big grad">R1</span><h3>Corregir</h3><p style="color:var(--muted)">El daño de un rayón sobre una fila del símbolo, sin volver a escanear.</p></div>
+      <div class="card r"><span class="big grad">R2</span><h3>Detectar</h3><p style="color:var(--muted)">Un dígito mal tipeado y dos dígitos intercambiados.</p></div>
+      <div class="card r"><span class="big grad">R3</span><h3>Nunca aceptar en silencio</h3><p style="color:var(--muted)">Un número distinto del original cuando el daño supera lo corregible.</p></div>
+    </div>
+  </div>
+</section>
+<section class="stash" id="integridad" data-title="Integridad">
+  <div class="in">
+    <div class="head"><p class="eyebrow r">Qué propiedad trabajamos</p><h2 class="words">Integridad frente al ruido. No autenticidad.</h2></div>
+    <div class="tcard r"><table>
+      <thead><tr><th>Propiedad</th><th>Pregunta</th><th>Amenaza</th><th>Herramienta</th></tr></thead>
+      <tbody>
+        <tr><td>Confidencialidad</td><td>¿Lo puede leer quien no debe?</td><td>Un tercero que intercepta</td><td>Cifrado (fuera del modelo)</td></tr>
+        <tr class="hl"><td><b>Integridad frente al ruido</b></td><td>¿El dato llegó igual, o se nota si cambió?</td><td>Rayón, mancha, tipeo (sin intención)</td><td><b>Código corrector + verificador</b></td></tr>
+        <tr><td>Autenticidad</td><td>¿Lo emitió quien dice?</td><td>Un falsificador (con intención)</td><td>Registro o firma digital (fuera del modelo)</td></tr>
+        <tr><td>Disponibilidad</td><td>¿Está cuando se necesita?</td><td>Pérdida, caída del servicio</td><td>Respaldo (fuera del modelo)</td></tr>
+      </tbody></table></div>
+    <div class="note warn r"><b>Límite asumido.</b> Los bits de control son funciones públicas del dato: quien conoce las reglas puede fabricar un número con su verificador y su símbolo. El código protege contra el azar, no contra un adversario.</div>
+  </div>
+</section>
+<section class="stash alt" id="soluciones" data-title="Soluciones">
+  <div class="in">
+    <div class="head"><p class="eyebrow r">Soluciones posibles</p><h2 class="words">Redundancia, pero con estructura.</h2>
+    <p class="lead r" style="max-width:60ch">Un código <span class="m">(<i>n</i>, <i>k</i>)</span> lleva <span class="m"><i>k</i></span> bits de información en <span class="m"><i>n</i></span>. Lo que puede hacer lo decide su <b>distancia mínima</b> <span class="m"><i>d</i><sub>min</sub></span>.</p></div>
+    <div class="tcard r"><table>
+      <thead><tr><th>Código</th><th>(n, k)</th><th>Tasa</th><th>d<sub>min</sub></th><th>Detecta</th><th>Corrige</th></tr></thead>
+      <tbody>
+        <tr><td>Sin código</td><td class="mono">(4, 4)</td><td class="mono">1</td><td class="mono">1</td><td class="mono">0</td><td class="mono">0</td></tr>
+        <tr><td>Bit de paridad</td><td class="mono">(5, 4)</td><td class="mono">0,80</td><td class="mono">2</td><td class="mono">1</td><td class="mono">0</td></tr>
+        <tr><td>Repetición triple</td><td class="mono">(3, 1)</td><td class="mono">0,33</td><td class="mono">3</td><td class="mono">2</td><td class="mono">1</td></tr>
+        <tr class="hl"><td><b>Hamming (7,4)</b></td><td class="mono">(7, 4)</td><td class="mono">0,57</td><td class="mono">3</td><td class="mono">2</td><td class="mono">1</td></tr>
+        <tr><td>Verificador mod 11</td><td class="mono">(7, 6) en ℤ<sub>11</sub></td><td class="mono">0,86</td><td class="mono">2</td><td>1 sustitución y toda transposición</td><td class="mono">0</td></tr>
+      </tbody></table></div>
+  </div>
+</section>
+<section class="stash" id="capacidad" data-title="Capacidad">
+  <div class="in">
+    <div class="head"><p class="eyebrow r">Teorema de capacidad</p><h2 class="words">Con d = 3 se detectan 2 errores o se corrige 1.</h2></div>
+    <div class="grid2">
+      <div class="card proof r">
+        <p>Si un código tiene distancia mínima <span class="m"><i>d</i></span>, <b>detecta</b> hasta <span class="m"><i>d</i> − 1</span> errores <b>o corrige</b> hasta <span class="m">⌊(<i>d</i> − 1)/2⌋</span>.</p>
+        <p class="eq"><i>d</i> = 3 &nbsp;⟹&nbsp; detecta 2 <b>o</b> corrige 1</p><p style="color:var(--muted)">Se usa para una cosa o para la otra, no para las dos a la vez.</p>
+        <p style="color:var(--muted)">Las bolas de radio <span class="m"><i>t</i> = ⌊(<i>d</i>−1)/2⌋</span> alrededor de cada palabra válida son disjuntas: si dos se cortaran, por la desigualdad triangular habría dos palabras a distancia ≤ 2<i>t</i> &lt; <i>d</i>. Con ≤ <i>t</i> errores, lo recibido cae en la bola de la original.</p>
+      </div>
+      <div class="card dist r">
+        <span class="k">Repetición 000 / 111 (d = 3)</span>
+        <svg id="distSvg" viewBox="0 0 760 150" role="img" aria-label="Camino entre dos palabras válidas a distancia 3"></svg>
+        <div class="seg" role="group" aria-label="Errores"><button data-dist="0">Sin errores</button><button data-dist="1" aria-pressed="true">1 error</button><button data-dist="2">2 errores</button></div>
+        <p class="status" id="distTxt"></p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="stash alt" id="casos" data-title="Casos">
+  <div class="in">
+    <div class="head"><p class="eyebrow r">Casos evaluados</p><h2 class="words">Cuatro ideas. Tocá cada una.</h2></div>
+    <div class="grid4" id="flips">
+      <button class="flip r" type="button"><div class="inner"><div class="face"><span class="k">Canal satelital · Puna</span><h3>Notas por satélite</h3><p>Una tormenta invierte bits de las notas que sube una escuela rural.</p></div><div class="face back"><span class="k">Por qué no</span><p>Sólido, pero el canal es invisible: no se puede romper ni mostrar en clase.</p></div></div></button>
+      <button class="flip r" type="button"><div class="inner"><div class="face"><span class="k">Papel</span><h3>Asistencia en planilla</h3><p>Paridad por filas y columnas al transcribir.</p></div><div class="face back"><span class="k">Por qué no</span><p>Solo paridad bidimensional: no llega a G, H ni síndromes.</p></div></div></button>
+      <button class="flip r" type="button"><div class="inner"><div class="face"><span class="k">Evaluación</span><h3>Hoja de respuestas</h3><p>Hamming en las burbujas del número de alumno.</p></div><div class="face back"><span class="k">Por qué no</span><p>Sin fuente de que se use así: un diseño sin respaldo real.</p></div></div></button>
+      <button class="flip r" type="button"><div class="inner"><div class="face"><span class="k">Inventario</span><h3>Códigos de netbooks</h3><p>Dígito verificador módulo 11 en las etiquetas.</p></div><div class="face back"><span class="k">Por qué no</span><p>Solo detecta. No usa códigos de grupo ni corrección.</p></div></div></button>
+    </div>
+    <div class="r"><button class="btn primary" id="chooseBtn">Mostrar el elegido</button></div>
+  </div>
+</section>
+<section class="stash" id="mod11" data-title="Módulo 11">
+  <div class="in">
+    <div class="grid2" style="align-items:center">
+      <div class="head">
+        <p class="eyebrow r">Capa 1 · dígito verificador</p>
+        <h2 class="words">Módulo 11 es el resto de dividir por 11.</h2>
+        <p class="lead r">Un reloj de 11 horas: después del 10 viene el 0. Escribimos <span class="m"><i>a</i> ≡ <i>b</i> (mod 11)</span> cuando dejan el mismo resto, es decir, cuando 11 divide a <span class="m"><i>a</i> − <i>b</i></span>.</p>
+        <p class="eq r">143 = 11 · 13 + 0 &nbsp;⟹&nbsp; 143 ≡ 0 (mod 11)</p>
+      </div>
+      <div class="row r" style="justify-content:center"><svg class="clock" id="clock" viewBox="0 0 200 200" role="img" aria-label="Reloj de 11 horas"></svg></div>
+    </div>
+  </div>
+</section>
+<section class="stash" id="mod11c" data-title="Mod 11 en vivo">
+  <div class="in">
+    <div class="head"><p class="eyebrow r">Probalo</p><h2 class="words">Escribí un número. Equivocate a propósito.</h2></div>
+    <div class="grid2">
+      <div class="card r">
+        <div class="numin"><label for="numIn" class="status">Número de 6 dígitos</label><input id="numIn" inputmode="numeric" maxlength="6" value="482915"><button class="btn small primary" id="calcBtn">Calcular</button></div>
+        <div class="digits" id="digitsRow"></div>
+        <p class="calc" id="calcTxt"></p>
+        <div class="row"><button class="btn small" id="typoBtn">Invertir dos dígitos</button><button class="btn small" id="subBtn">Cambiar un dígito</button><button class="btn small" id="resetNum">Original</button></div>
+        <p class="status" id="numMsg">Este número se usa en todo el laboratorio.</p>
+      </div>
+      <div class="card r">
+        <span class="k">¿Por qué 11 y no 10?</span>
+        <p>En ℤ<sub>10</sub> hay divisores de cero: <span class="m">2 · 5 = 10 ≡ 0</span>. Con peso 2, cambiar un dígito en 5 unidades no altera el resto. En ℤ<sub>11</sub>, <span class="m">2 · 5 ≢ 0</span> y todo no nulo tiene inverso (<span class="m">2 · 6 = 12 ≡ 1</span>).</p>
+        <p class="calc" id="mod10Txt"></p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="stash" id="matH" data-title="Matriz H">
+  <div class="in">
+    <div class="grid2" style="align-items:center">
+      <div class="head">
+        <p class="eyebrow r">Matriz de control</p>
+        <h2 class="words">H = [ A ; I₃ ] decide quién es válido.</h2>
+        <div class="note ok r"><b>Teorema fundamental.</b> Las 7 filas de <span class="m"><i>H</i></span> son no nulas y distintas, por lo tanto <span class="m"><i>d</i><sub>min</sub> ≥ 3</span>. Como <span class="m">0010011</span> tiene peso 3, <span class="m"><i>d</i><sub>min</sub> = 3</span>.</div>
+        <p class="r" style="color:var(--muted)">Comprobación: <span class="m"><i>G</i> · <i>H</i> = <i>A</i> ⊕ <i>A</i> = 0</span>. Toda palabra generada pasa el control.</p>
+      </div>
+      <div class="card r" style="justify-items:center"><div class="mx"><span><i>H</i> =</span><div class="bm" id="hMat"></div><div class="rl" id="hLbl"></div></div></div>
+    </div>
+  </div>
+</section>
+<section class="stash inv" id="lagrange" data-title="Lagrange">
+  <div class="in center">
+    <p class="eyebrow r">Decodificación por síndrome</p>
+    <h2 class="words">Lagrange parte el espacio en 8 clases.</h2>
+    <div class="grid3" style="width:100%">
+      <div class="card r stat"><span class="v">2<sup>7</sup> = <span data-count="128">128</span></span><p>palabras posibles al recibir</p></div>
+      <div class="card r stat"><span class="v">|C| = <span data-count="16">16</span></span><p>palabras válidas (subgrupo)</p></div>
+      <div class="card r stat"><span class="v grad2">128 / 16 = <span data-count="8">8</span></span><p>clases laterales <span class="m"><i>e</i> ⊕ C</span>, disjuntas</p></div>
+    </div>
+    <p class="lead r" style="max-width:52ch">Si se envió <span class="m"><i>c</i></span> y llegó <span class="m"><i>w</i> = <i>c</i> ⊕ <i>e</i></span>: <span class="m"><i>s</i>(<i>w</i>) = <i>c</i>·<i>H</i> ⊕ <i>e</i>·<i>H</i> = <i>e</i>·<i>H</i></span>. <b>El síndrome depende solo del error.</b></p>
+  </div>
+</section>
+<section class="stash alt" id="sindrome2" data-title="Probar el síndrome">
+  <div class="in">
+    <div class="head"><p class="eyebrow r">Probalo</p><h2 class="words">Tocá bits. Mirá cómo los encuentra.</h2></div>
+    <div class="card r">
+      <div class="row"><span class="status">Dígito enviado</span><div class="pick" id="pick2" role="group" aria-label="Dígito enviado"></div></div>
+      <div class="flipbits" id="flipBits"></div>
+      <div class="calc" id="synTxt"></div>
+    </div>
+  </div>
+</section>
+<section class="stash" id="limites" data-title="Límites">
+  <div class="in">
+    <div class="head"><p class="eyebrow r">Límites del modelo</p><h2 class="words">Dónde se rompe. Y qué hace entonces.</h2></div>
+    <div class="grid2">
+      <article class="card r"><span class="k">Dos filas rayadas</span><h3>Error de peso 2 en cada palabra</h3><p>El síndrome coincide con otra fila de H: el código perfecto "corrige" un bit sano. La capa ℤ<sub>11</sub> lo detecta.</p><p class="calc" id="lim1"></p><div><button class="btn small" data-limit="two">Probar en el laboratorio</button></div></article>
+      <article class="card r"><span class="k">Mancha 2 × 2</span><h3>Dos errores en dos palabras</h3><p>Puede aparecer un valor mayor que 9, que no es un dígito: se rechaza por formato.</p><p class="calc" id="lim2"></p><div><button class="btn small" data-limit="stain">Probar en el laboratorio</button></div></article>
+      <article class="card r"><span class="k">Sin entrelazar</span><h3>La ráfaga cae en una sola palabra</h3><p>Con palabras por filas, el rayón deja 7 errores en un mismo dígito.</p><p class="calc" id="lim4"></p><div><button class="btn small" data-limit="rows">Probar en el laboratorio</button></div></article>
+      <article class="card r"><span class="k">Falsificación</span><h3>Íntegro no es auténtico</h3><p>Un número inventado con su verificador y su símbolo da "íntegro": no hay errores de lectura, pero no es verdadero.</p><div><button class="btn small" data-limit="fake">Fabricar uno y escanearlo</button></div></article>
+    </div>
+  </div>
+</section>
+<section class="stash alt" id="comparacion" data-title="Comparación">
+  <div class="in">
+    <div class="head"><p class="eyebrow r">Comparación</p><h2 class="words">El mismo daño, cinco métodos.</h2><p class="small r">Calculado en vivo con el algoritmo del laboratorio, sobre el número actual.</p></div>
+    <div class="tcard r"><table id="cmpTable"></table></div>
+  </div>
+</section>
+<section class="stash" id="resistencia" data-title="100 escaneos">
+  <div class="in">
+    <div class="head"><p class="eyebrow r">Prueba de resistencia</p><h2 class="words">100 escaneos con daños al azar.</h2><p class="lead r" style="max-width:56ch">Un módulo, dos módulos, un rayón, una mancha o dos rayones. Lo peor es el <b>error silencioso</b>: aceptar un número equivocado.</p></div>
+    <div class="card r">
+      <div class="row"><button class="btn primary" id="burstBtn">Simular 100 escaneos</button><div class="legend"><span><i style="background:var(--ok)"></i>Correcto</span><span><i style="background:var(--warn)"></i>Pide reescanear</span><span><i style="background:var(--err)"></i>Error silencioso</span></div></div>
+      <div class="bars" id="bars"></div>
+    </div>
+    <div class="note r"><b>Justificación.</b> 21 módulos de control (49 en lugar de 28) para corregir un rayón sin reescanear (R1). El verificador en ℤ<sub>11</sub> cubre el tipeo (R2) y atrapa las correcciones equivocadas cuando el daño supera la capacidad (R3).</div>
+  </div>
+</section>
+<section class="stash inv" id="cierre" data-title="Cierre">
+  <div class="in center">
+    <p class="eyebrow r">Para llevarse</p>
+    <h2 class="words">Tres ideas.</h2>
+    <div class="grid3" style="text-align:left;width:100%">
+      <div class="card r"><h3>Detectar ≠ corregir</h3><p style="color:var(--muted)">Detectar pide <span class="m"><i>d</i><sub>min</sub> = 2</span>; corregir uno, <span class="m"><i>d</i><sub>min</sub> ≥ 3</span>. El síndrome, gracias a Lagrange, dice dónde.</p></div>
+      <div class="card r"><h3>El orden es parte del código</h3><p style="color:var(--muted)">Los mismos 49 bits, por columnas, convierten una ráfaga en errores corregibles.</p></div>
+      <div class="card r"><h3>Íntegro ≠ auténtico</h3><p style="color:var(--muted)">Los códigos protegen contra el ruido. Contra un falsificador hace falta un registro o una firma.</p></div>
+    </div>
+    <div class="names r"><span>Lemuel Ayala</span><span>Nadia Lorena Burgos</span><span>Inés Beatriz Coraite</span><span>René Iván Mamani</span></div>
+    <div class="sources r">
+      <b style="color:var(--text)">Fuentes</b>
+      <span>Apuntes de la cátedra Complementos de Matemática Discreta, Unidad IV, FI-UNJu, 2026.</span>
+      <span>J. Verhoeff, <i>Error Detecting Decimal Codes</i>, Mathematical Centre Tracts 29, Amsterdam, 1969.</span>
+      <span>ISO/IEC 18004: simbología QR Code (niveles L, M, Q, H).</span>
+      <span><a href="https://www.todojujuy.com/jujuy/boletin-calificaciones-digital-jujuy-que-es-y-como-funciona-n291343" target="_blank" rel="noopener">Todo Jujuy: Boletín de Calificaciones Digital (08/06/2026)</a> · <a href="https://www.iprofesional.com/tecnologia/420861-mi-argentina-lanza-la-verificacion-digital-de-titulos-con-codigo-qr-asi-funciona" target="_blank" rel="noopener">iProfesional: títulos con QR (16/01/2025)</a> · <a href="https://www.todojujuy.com/ministerio-educacion-como-autentificar-el-titulo-n231816" target="_blank" rel="noopener">Todo Jujuy: autenticar el título (14/03/2023)</a></span>
+      <span>La constancia, la institución, las firmas y el sello del laboratorio son ficticios y no tienen valor oficial.</span>
+    </div>
+  </div>
+</section></div>
+
+<div class="theater" id="theater" hidden role="dialog" aria-modal="true" aria-labelledby="thTitle">
+  <div class="th-head">
+    <div style="min-width:0;flex:1"><div class="th-step" id="thStep">Paso 1</div><div class="th-title" id="thTitle">Lectura</div><p class="th-text" id="thText"></p></div>
+    <div class="th-controls"><button class="btn primary" id="thNext" hidden>Siguiente</button><button class="btn" id="thSkip">Saltar al resultado</button><button class="btn" id="thClose">Cerrar</button></div>
+  </div>
+  <div class="stage"><div class="stage-inner" id="stage"></div></div>
+  <div class="th-foot" id="thFoot"></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+"use strict";
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const REDUCED=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const G_OK=typeof window.gsap!=='undefined';
+const ST_OK=G_OK&&typeof window.ScrollTrigger!=='undefined';
+if(ST_OK)gsap.registerPlugin(ScrollTrigger);
+
+/* ================= Núcleo matemático ================= */
+const A=[[1,1,0],[1,0,1],[0,1,1],[1,1,1]];
+const H=[...A,[1,0,0],[0,1,0],[0,0,1]];
+const G=A.map((r,i)=>[0,1,2,3].map(j=>i===j?1:0).concat(r));
+const bits4=v=>[3,2,1,0].map(k=>(v>>k)&1);
+const fromBits=b=>b.reduce((a,x)=>a*2+x,0);
+const xor=(a,b)=>a.map((x,i)=>x^b[i]);
+const encode=x=>{let c=[0,0,0,0,0,0,0];x.forEach((b,i)=>{if(b)c=xor(c,G[i]);});return c;};
+const syndrome=w=>{let s=[0,0,0];w.forEach((b,i)=>{if(b)s=xor(s,H[i]);});return s;};
+const rowOf=s=>H.findIndex(r=>r.join('')===s.join(''));
+const WEI6=[7,6,5,4,3,2],WEI7=[7,6,5,4,3,2,1];
+const checkDigit=d6=>{const t=d6.reduce((a,d,i)=>a+d*WEI6[i],0);return {t,r:t%11,v:(11-t%11)%11};};
+const wsum=d7=>d7.reduce((a,d,i)=>a+d*WEI7[i],0);
+const mod11=d7=>wsum(d7)%11;
+const digTxt=d=>d===10?'X':String(d);
+const numTxt=d7=>d7.slice(0,6).map(digTxt).join('')+'-'+digTxt(d7[6]);
+const METHODS={
+  hcol:{name:'Hamming (7,4) por columnas + verificador',short:'Hamming por columnas',rows:7,layout:'col',check:'hamming',verifier:true},
+  hrow:{name:'Hamming (7,4) por filas + verificador',short:'Hamming por filas',rows:7,layout:'row',check:'hamming',verifier:true},
+  par:{name:'Paridad por columna + verificador',short:'Paridad + verificador',rows:5,layout:'col',check:'parity',verifier:true},
+  ver:{name:'Solo dígito verificador',short:'Solo verificador',rows:4,layout:'col',check:'none',verifier:true},
+  none:{name:'Sin código',short:'Sin código',rows:4,layout:'col',check:'none',verifier:false}
+};
+function wordOf(m,d){const b=bits4(d);if(m.check==='hamming')return encode(b);if(m.check==='parity')return b.concat([b.reduce((a,x)=>a^x,0)]);return b;}
+function buildGrid(m,d7){const W=d7.map(d=>wordOf(m,d));if(m.layout==='row')return W.map(w=>w.slice());return Array.from({length:m.rows},(_,r)=>W.map(w=>w[r]));}
+function wordsFrom(m,grid){if(m.layout==='row')return grid.map(r=>r.slice());return grid[0].map((_,j)=>grid.map(r=>r[j]));}
+function applyDamage(grid,dmg){const g=grid.map(r=>r.slice());dmg.forEach(k=>{const [r,c]=k.split(',').map(Number);if(g[r]&&g[r][c]!==undefined)g[r][c]^=1;});return g;}
+function evaluate(m,grid,truth){
+  const per=wordsFrom(m,grid).map(w=>{
+    if(m.check==='hamming'){const s=syndrome(w);const p=rowOf(s);const c=w.slice();if(p>=0)c[p]^=1;return {w,s,pos:p,c,value:fromBits(c.slice(0,4)),detected:false};}
+    if(m.check==='parity'){const s=w.reduce((a,x)=>a^x,0);return {w,s:[s],pos:-1,c:w,value:fromBits(w.slice(0,4)),detected:s===1};}
+    return {w,s:null,pos:-1,c:w,value:fromBits(w),detected:false};});
+  const values=per.map(p=>p.value),corrections=per.filter(p=>p.pos>=0).length,detected=per.some(p=>p.detected);
+  const badFormat=values.some((v,i)=>i<6?v>9:v>(m.verifier?10:9)),m11=mod11(values);
+  let status,reason;
+  if(detected){status='reject';reason='La paridad falló en al menos una palabra: hay un error, pero no se sabe dónde.';}
+  else if(badFormat){status='reject';reason='Apareció un valor mayor que 9, que no es un dígito.';}
+  else if(m.verifier&&m11!==0){status='reject';reason='La suma ponderada no es ≡ 0 (mod 11).';}
+  else{const same=values.join()===truth.join();status=same?'ok':'silent';reason=same?'El número coincide con el original.':'Se aceptó un número distinto del original y nadie lo advirtió.';}
+  return {per,values,corrections,detected,badFormat,m11,status,reason};
+}
+(function tests(){
+  const d6=[4,8,2,9,1,5],cd=checkDigit(d6);console.assert(cd.t===135&&cd.r===3&&cd.v===8,'verificador');
+  const d7=d6.concat(cd.v),m=METHODS.hcol,g=buildGrid(m,d7);
+  console.assert(g.map(r=>r.join('')).join('/')==='0101001/1000010/0010000/0001110/1100101/0110111/1011100','grilla');
+  for(let r=0;r<7;r++){const e=evaluate(m,applyDamage(g,new Set([0,1,2,3,4,5,6].map(c=>r+','+c))),d7);console.assert(e.status==='ok'&&e.corrections===7,'rayón '+r);}
+  const e2=evaluate(m,applyDamage(g,new Set([0,1,2,3,4,5,6].flatMap(c=>['2,'+c,'3,'+c]))),d7);console.assert(e2.values.join(',')==='7,11,1,10,2,6,11'&&e2.status==='reject','dos filas');
+  console.assert(mod11([4,2,8,9,1,5,8])===5,'tipeo');
+  for(let x=0;x<16;x++)console.assert(syndrome(encode(bits4(x))).join('')==='000','GH=0');
+})();
+const state={d7:[4,8,2,9,1,5,8],method:'hcol',dmg:new Set(),speed:REDUCED?'clase':'cine',zone:true};
+const truthGrid=()=>buildGrid(METHODS[state.method],state.d7);
+
+/* ================= Símbolo 21 × 21 ================= */
+const NS='http://www.w3.org/2000/svg';
+function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e;}
+const N=21,QZ=2,R0=10,C0=11,TOT=N+2*QZ;
+const FUNC=(function(){
+  const t=[...Array(N)].map(()=>Array(N).fill('fill')),v=[...Array(N)].map(()=>Array(N).fill(0));
+  const fin=(r,c)=>{for(let i=-1;i<=7;i++)for(let j=-1;j<=7;j++){const rr=r+i,cc=c+j;if(rr<0||cc<0||rr>=N||cc>=N)continue;
+    if(i<0||i>6||j<0||j>6){t[rr][cc]='sep';v[rr][cc]=0;}else{t[rr][cc]='finder';v[rr][cc]=(i===0||i===6||j===0||j===6||(i>=2&&i<=4&&j>=2&&j<=4))?1:0;}}};
+  fin(0,0);fin(0,N-7);fin(N-7,0);
+  for(let k=8;k<N-8;k++){t[6][k]='timing';v[6][k]=k%2===0?1:0;t[k][6]='timing';v[k][6]=k%2===0?1:0;}
+  const F='111011111000100';let f=0;
+  for(let k=0;k<9;k++){if(t[8][k]==='fill'){t[8][k]='format';v[8][k]=+F[f++%15];}}
+  for(let k=8;k>=0;k--){if(t[k][8]==='fill'){t[k][8]='format';v[k][8]=+F[f++%15];}}
+  for(let k=N-8;k<N;k++){t[8][k]='format';v[8][k]=+F[f++%15];t[k][8]='format';v[k][8]=+F[f++%15];}
+  t[N-8][8]='dark';v[N-8][8]=1;
+  let s=20261121;const rnd=()=>{s=(s*1103515245+12345)%2147483648;return s/2147483648;};
+  for(let r=0;r<N;r++)for(let c=0;c<N;c++)if(t[r][c]==='fill')v[r][c]=rnd()<.5?1:0;
+  return {t,v};
+})();
+const WORD_COLORS=['#007AFF','#FF9500','#34C759','#AF52DE','#FF3B30','#30B0C7','#FF2D55'];
+let symId=0;
+function drawSymbol(svg,grid,opts={}){
+  const R=grid.length,C=grid[0].length,id='s'+(++symId);
+  svg.setAttribute('viewBox',`0 0 ${TOT} ${TOT}`);svg.setAttribute('shape-rendering','crispEdges');svg.innerHTML='';
+  const defs=el('defs',{},svg);
+  const flt=el('filter',{id:'r'+id,x:'-20%',y:'-20%',width:'140%',height:'140%'},defs);
+  el('feTurbulence',{type:'fractalNoise',baseFrequency:'1.6',numOctaves:'2',seed:'4'},flt);
+  el('feDisplacementMap',{in:'SourceGraphic',scale:'.55'},flt);
+  el('rect',{x:0,y:0,width:TOT,height:TOT,fill:'#fff'},svg);
+  let d='';
+  for(let r=0;r<N;r++)for(let c=0;c<N;c++){if(r>=R0&&r<R0+R&&c>=C0&&c<C0+C)continue;if(FUNC.v[r][c])d+=`M${c+QZ} ${r+QZ}h1v1h-1z`;}
+  const base=el('path',{d,fill:'#111'},svg);
+  const cells=[];
+  for(let r=0;r<R;r++){cells[r]=[];for(let c=0;c<C;c++){
+    let fill=grid[r][c]?'#111':'#fff';
+    if(opts.colorWords){const wi=opts.layout==='row'?r:c;fill=grid[r][c]?WORD_COLORS[wi]:'color-mix(in srgb,'+WORD_COLORS[wi]+' 14%, #fff)';}
+    cells[r][c]=el('rect',{x:C0+c+QZ,y:R0+r+QZ,width:1,height:1,fill,class:'cell','data-r':r,'data-c':c},svg);}}
+  const sm=el('g',{filter:`url(#r${id})`,'shape-rendering':'auto'},svg);
+  if(opts.dmg)opts.dmg.forEach(k=>{const [r,c]=k.split(',').map(Number);if(r<R&&c<C)el('rect',{x:C0+c+QZ-.18,y:R0+r+QZ-.12,width:1.36,height:1.24,rx:.3,fill:'rgba(120,92,58,.38)'},sm);});
+  if(opts.zone)el('rect',{x:C0+QZ-.15,y:R0+QZ-.15,width:C+.3,height:R+.3,fill:'none',stroke:'#007AFF','stroke-width':.14,'stroke-dasharray':'.4 .25','shape-rendering':'auto'},svg);
+  return {cells,R,C,smudges:sm,base};
+}
+
+/* ================= Portada ================= */
+let heroTl=null;
+function hero(){
+  const svg=$('#heroSvg'),g=buildGrid(METHODS.hcol,[4,8,2,9,1,5,8]);
+  const q=drawSymbol(svg,g,{zone:true});
+  if(!G_OK||REDUCED)return;
+  const row=q.cells[3],beam=$('#heroBeam');
+  const clip=el('clipPath',{id:'heroClip'},svg.querySelector('defs'));const cr=el('rect',{x:0,y:0,width:TOT,height:0},clip);
+  [...svg.children].forEach(ch=>{if(ch.tagName!=='defs')ch.setAttribute('clip-path','url(#heroClip)');});
+  const tl=gsap.timeline({delay:.3});
+  tl.set(beam,{top:0,opacity:1});
+  tl.to(cr,{attr:{height:TOT},duration:1.5,ease:'power1.inOut'});
+  tl.to(beam,{top:'100%',duration:1.5,ease:'power1.inOut'},'<');
+  tl.to(beam,{opacity:0,duration:.2});
+  tl.add(()=>{row.forEach((c,j)=>{c.setAttribute('fill',g[3][j]?'#fff':'#111');el('rect',{x:C0+j+QZ-.18,y:R0+3+QZ-.12,width:1.36,height:1.24,fill:'rgba(120,92,58,.38)'},q.smudges);});},'+=.5');
+  tl.to(row,{attr:{fill:'#FF3B30'},duration:.25,stagger:.05},'+=.5');
+  tl.add(()=>row.forEach((c,j)=>c.setAttribute('fill',g[3][j]?'#111':'#fff')));
+  tl.from(row,{opacity:0,duration:.25,stagger:.12},'+=.4');
+  tl.to(q.smudges,{opacity:0,duration:.8},'+=.3');
+  tl.add(()=>{q.smudges.innerHTML='';gsap.set(q.smudges,{opacity:1});});
+  heroTl=tl;
+}
+$('#replayHero').addEventListener('click',()=>{if(heroTl)heroTl.kill();hero();});
+$('#startBtn').addEventListener('click',()=>$('#contexto').scrollIntoView({behavior:REDUCED?'auto':'smooth'}));
+
+/* ================= Navegación ================= */
+const slides=$$('section.slide'),rail=$('#rail');
+slides.forEach(s=>{const a=document.createElement('a');a.href='#'+s.id;a.title=s.dataset.title;a.setAttribute('aria-label',s.dataset.title);rail.appendChild(a);});
+let cur=0;
+function setCur(i){cur=i;[...rail.children].forEach((d,k)=>d.classList.toggle('on',k===i));$('#nowTxt').textContent=`${i+1} / ${slides.length} · ${slides[i].dataset.title}`;document.body.classList.toggle('on-inv',slides[i].classList.contains('inv'));document.documentElement.classList.toggle('loose',slides[i].offsetHeight>innerHeight*1.04);}
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)setCur(slides.indexOf(e.target));});},{rootMargin:'-45% 0px -50% 0px'});
+slides.forEach(s=>io.observe(s));setCur(0);
+addEventListener('scroll',()=>{const h=document.documentElement;$('#progress').style.width=(100*scrollY/Math.max(1,h.scrollHeight-innerHeight))+'%';},{passive:true});
+function go(i){slides[Math.max(0,Math.min(slides.length-1,i))].scrollIntoView({behavior:REDUCED?'auto':'smooth'});}
+document.addEventListener('keydown',e=>{
+  if(!$('#theater').hidden){if(e.key==='Escape')closeTheater();else if((e.key==='ArrowRight'||e.key===' ')&&!$('#thNext').hidden){e.preventDefault();$('#thNext').click();}return;}
+  if(/INPUT|SELECT|TEXTAREA/.test(document.activeElement.tagName))return;
+  if(e.key==='f'||e.key==='F'){toggleFs();return;}
+  if(['ArrowDown','PageDown','ArrowRight'].includes(e.key)){e.preventDefault();go(cur+1);}
+  if(['ArrowUp','PageUp','ArrowLeft'].includes(e.key)){e.preventDefault();go(cur-1);}
+});
+function toggleFs(){try{if(document.fullscreenElement)document.exitFullscreen();else document.documentElement.requestFullscreen().catch(()=>{});}catch(e){}}
+$('#fsBtn').addEventListener('click',toggleFs);
+if(!document.fullscreenEnabled)$('#fsBtn').hidden=true;
+$('#themeBtn').addEventListener('click',()=>{const r=document.documentElement;const dark=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;r.dataset.theme=dark?'light':'dark';});
+
+/* ================= Problemática ================= */
+(function(){const data=[['Un dígito cambiado',79.05],['Dos vecinos invertidos',10.21],['Errores de 3 a 6 dígitos',5.52],['Otros de 2 dígitos',5.24]];
+  const b=$('#verhoeff');data.forEach(([n,p],i)=>{const r=document.createElement('div');r.className='hbar';r.innerHTML=`<span>${n}</span><div class="tr"><span data-w="${p}" style="width:${p}%;${i>1?'background:var(--fill-2)':''}"></span></div><span class="pc">${p.toFixed(2).replace('.',',')} %</span>`;b.appendChild(r);});})();
+
+/* ================= Distancia ================= */
+function drawDist(n){
+  const svg=$('#distSvg');svg.innerHTML='';
+  const pts=['000','100','110','111'],xs=[70,280,490,690];
+  el('line',{x1:70,y1:70,x2:690,y2:70,stroke:'var(--fill-2)','stroke-width':3},svg);
+  pts.forEach((p,i)=>{const valid=i===0||i===3;
+    el('circle',{cx:xs[i],cy:70,r:valid?26:17,fill:'var(--solid)',stroke:valid?'var(--accent)':'var(--fill-2)','stroke-width':3},svg);
+    const t=el('text',{x:xs[i],y:76,'text-anchor':'middle','font-family':'JetBrains Mono, monospace','font-size':15,fill:'var(--text)','font-weight':600},svg);t.textContent=p;
+    if(valid){const l=el('text',{x:xs[i],y:124,'text-anchor':'middle','font-size':13,fill:'var(--muted)'},svg);l.textContent=i?'palabra válida c′':'palabra válida c';}
+    if(i>0){const l=el('text',{x:(xs[i-1]+xs[i])/2,y:52,'text-anchor':'middle','font-size':12,fill:'var(--muted)'},svg);l.textContent='distancia 1';}});
+  const pos=xs[n],tgt=n<=1?0:3,col=n===0?'var(--ok)':n===1?'var(--warn)':'var(--err)';
+  const ring=el('circle',{cx:pos,cy:70,r:33,fill:'none',stroke:col,'stroke-width':2.5,'stroke-dasharray':'5 4'},svg);
+  if(n>0){const d=el('defs',{},svg),m=el('marker',{id:'arr',markerWidth:8,markerHeight:8,refX:4,refY:4,orient:'auto'},d);el('path',{d:'M0,0 L8,4 L0,8 z',fill:tgt===0?'var(--ok)':'var(--err)'},m);
+    const pth=el('path',{d:`M ${pos} 105 Q ${(pos+xs[tgt])/2} 145 ${xs[tgt]} 105`,fill:'none',stroke:tgt===0?'var(--ok)':'var(--err)','stroke-width':2.5,'marker-end':'url(#arr)'},svg);
+    if(G_OK&&!REDUCED){const L=pth.getTotalLength();gsap.fromTo(pth,{attr:{'stroke-dasharray':L,'stroke-dashoffset':L}},{attr:{'stroke-dashoffset':0},duration:.7,ease:'power2.out'});}}
+  if(G_OK&&!REDUCED)gsap.from(ring,{attr:{r:10},opacity:0,duration:.5,ease:'back.out(2)'});
+  $('#distTxt').textContent=['Se envió 000 y llegó 000: síndrome nulo, se acepta.','Llegó 100: d(100, c) = 1 y d(100, c′) = 2. Se decodifica a c = 000, la correcta.','Llegó 110: d(110, c) = 2 y d(110, c′) = 1. Se decodifica a c′ = 111: corrección equivocada y sin aviso.'][n];
+  $$('[data-dist]').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.dist===n));
+}
+$$('[data-dist]').forEach(b=>b.addEventListener('click',()=>drawDist(+b.dataset.dist)));drawDist(1);
+
+/* ================= Casos ================= */
+$$('#flips .flip').forEach(f=>f.addEventListener('click',()=>f.classList.toggle('on')));
+$('#chooseBtn').addEventListener('click',()=>{$$('#flips .flip').forEach(f=>f.classList.add('on'));setTimeout(()=>{$$('#flips .flip').forEach(f=>f.classList.add('dim'));go(slides.indexOf($('#elegido')));},REDUCED?0:1100);});
+
+/* ================= Módulo 11 ================= */
+function drawClock(rem,anim){
+  const svg=$('#clock');svg.innerHTML='';const n=11;
+  el('circle',{cx:100,cy:100,r:92,fill:'var(--solid)'},svg);
+  for(let k=0;k<n;k++){const a=-Math.PI/2+2*Math.PI*k/n,x=100+72*Math.cos(a),y=100+72*Math.sin(a);
+    el('circle',{cx:x,cy:y,r:14,fill:k===rem?(rem===0?'#34C759':'#FF3B30'):'var(--fill)'},svg);
+    const t=el('text',{x,y:y+5,'text-anchor':'middle','font-family':'JetBrains Mono, monospace','font-size':13,fill:k===rem?'#fff':'var(--text)','font-weight':600},svg);t.textContent=k;}
+  const a=-Math.PI/2+2*Math.PI*rem/n;
+  const hand=el('line',{x1:100,y1:100,x2:100+50*Math.cos(a),y2:100+50*Math.sin(a),stroke:'var(--accent)','stroke-width':3.5,'stroke-linecap':'round'},svg);
+  el('circle',{cx:100,cy:100,r:5,fill:'var(--accent)'},svg);
+  const t=el('text',{x:100,y:132,'text-anchor':'middle','font-size':11,fill:'var(--muted)'},svg);t.textContent='143 ≡ 0 (mod 11)';
+  if(anim&&G_OK&&!REDUCED)gsap.fromTo(hand,{rotation:-720,svgOrigin:'100 100'},{rotation:0,duration:2.2,ease:'power3.out',svgOrigin:'100 100'});
+}
+function renderDigits(d7,changed){
+  const row=$('#digitsRow');row.innerHTML='';
+  d7.forEach((d,i)=>{const b=document.createElement('div');b.className='dg'+(i===6?' ver':'')+(changed&&changed.includes(i)?' chg':'');b.innerHTML=`<span class="d">${digTxt(d)}</span><span class="w">×${WEI7[i]}</span><span class="p">${d*WEI7[i]}</span>`;row.appendChild(b);});
+  if(G_OK&&!REDUCED)gsap.from(row.children,{y:14,opacity:0,stagger:.05,duration:.4,ease:'power3.out'});
+  const t=wsum(d7),r=t%11,q=Math.floor(t/11);
+  if(!changed){const cd=checkDigit(d7.slice(0,6));const prods=d7.slice(0,6).map((d,i)=>`${WEI6[i]}·${d}`);
+    $('#calcTxt').innerHTML=`${prods.join(' + ')} = <b>${cd.t}</b> = 11 · ${Math.floor(cd.t/11)} + <b>${cd.r}</b><br><i>d</i><sub>7</sub> = (11 − ${cd.r}) mod 11 = <b>${digTxt(cd.v)}</b>. &nbsp;Comprobación: ${t} = 11 · ${q} ≡ 0 ✓`;}
+  else $('#calcTxt').innerHTML=`Se tipeó <b>${numTxt(d7)}</b>: Σ = <b>${t}</b> = 11 · ${q} + <b>${r}</b> → ${t} ≡ ${r} (mod 11). <span style="color:var(--err)">No es ≡ 0: se rechaza.</span>`;
+}
+function renderMod10(){
+  const d=state.d7.slice(),k=5,orig=d[k],alt=orig>=5?orig-5:orig+5,d2=d.slice();d2[k]=alt;const s1=wsum(d),s2=wsum(d2);
+  $('#mod10Txt').innerHTML=`Con tu número: el 6.º dígito de ${orig} a ${alt} (peso 2) cambia la suma en ${2*(alt-orig)}.<br>ℤ<sub>10</sub>: ${s1} ≡ ${s1%10} y ${s2} ≡ ${s2%10} → <b style="color:var(--err)">no se detecta</b>.<br>ℤ<sub>11</sub>: ${s1} ≡ ${s1%11} y ${s2} ≡ ${s2%11} → <b style="color:var(--ok)">se detecta</b>.`;
+}
+function setNumber(d6){const cd=checkDigit(d6);state.d7=d6.concat(cd.v);state.dmg.clear();
+  $('#caseNum').textContent=numTxt(state.d7);$('#paperNum').textContent='N.º '+numTxt(state.d7);$('#numIn').value=d6.join('');
+  renderDigits(state.d7);renderMod10();renderLab();renderMini();renderCompare();renderLimits();
+  $('#numMsg').textContent=cd.v===10?'El verificador vale 10 y se escribe X. En binario es 1010: entra en 4 bits.':'Este número se usa en todo el laboratorio.';}
+$('#calcBtn').addEventListener('click',()=>{const v=$('#numIn').value.replace(/\D/g,'');if(v.length!==6){$('#numMsg').textContent='Escribí exactamente 6 dígitos.';return;}setNumber(v.split('').map(Number));});
+$('#numIn').addEventListener('keydown',e=>{if(e.key==='Enter')$('#calcBtn').click();});
+$('#typoBtn').addEventListener('click',()=>{const d=state.d7.slice();let i=1;while(i<5&&d[i]===d[i+1])i++;[d[i],d[i+1]]=[d[i+1],d[i]];renderDigits(d,[i,i+1]);});
+$('#subBtn').addEventListener('click',()=>{const d=state.d7.slice();d[2]=(d[2]+3)%10;renderDigits(d,[2]);});
+$('#resetNum').addEventListener('click',()=>renderDigits(state.d7));
+
+/* ================= Matrices ================= */
+function fillBM(box,M,cls){box.innerHTML='';M.forEach(r=>{const row=document.createElement('div');row.className='row';r.forEach((b,j)=>{const c=document.createElement('span');c.className='c '+cls(j,r);c.textContent=b;row.appendChild(c);});box.appendChild(row);});return [...box.children];}
+const gRows=fillBM($('#gMat'),G,j=>j<4?'i':'a');
+const hRows=fillBM($('#hMat'),H,(j,r)=>H.indexOf(r)<4?'a':'i');
+$('#hLbl').innerHTML=H.map((_,i)=>`<span>← bit ${i+1}</span>`).join('');
+$('#cwList').innerHTML=[...Array(16)].map((_,x)=>{const c=encode(bits4(x));return `<span>${c.slice(0,4).join('')} ${c.slice(4).join('')}<small>peso ${c.reduce((a,b)=>a+b,0)}</small></span>`;}).join('');
+let pickD=4;
+function renderLayer2(){
+  const pick=$('#pick');if(!pick.children.length){for(let d=0;d<=10;d++){const b=document.createElement('button');b.textContent=digTxt(d);b.addEventListener('click',()=>{pickD=d;renderLayer2();});pick.appendChild(b);}}
+  [...pick.children].forEach((x,k)=>x.setAttribute('aria-pressed',k===pickD));
+  const x=bits4(pickD);gRows.forEach((r,i)=>r.classList.toggle('on',!!x[i]));
+  const box=$('#xorBox');box.innerHTML='';let acc=[0,0,0,0,0,0,0];const f=x.map((b,i)=>b?i+1:null).filter(Boolean);
+  box.insertAdjacentHTML('beforeend',`<div class="status">x = ${digTxt(pickD)} = ${x.join('')} → ${f.length===0?'ninguna fila (c = 0)':f.length===1?'fila '+f[0]+' de G':'filas '+f.join(', ')+' de G'}</div>`);
+  G.forEach((r,i)=>{if(!x[i])return;const first=acc.every(v=>!v);acc=xor(acc,r);box.insertAdjacentHTML('beforeend',`<div>${first?'&nbsp;&nbsp;':'⊕ '}${r.slice(0,4).join('')} ${r.slice(4).join('')}</div>`);});
+  const c=encode(x);box.insertAdjacentHTML('beforeend',`<div class="res">c = ${c.slice(0,4).join('')} <span style="color:var(--ok)">${c.slice(4).join('')}</span></div>`);
+  if(G_OK&&!REDUCED)gsap.from(box.children,{x:-10,opacity:0,stagger:.07,duration:.35,ease:'power3.out'});
+}
+renderLayer2();
+
+/* ================= Síndrome ================= */
+(function(){
+  const rows=[['000','0000000 · peso 0','Palabra válida: se acepta.','ok']].concat(H.map((h,i)=>{const e=[0,0,0,0,0,0,0];e[i]=1;return [h.join(''),e.join('')+' · peso 1',`Bit ${i+1} alterado${i<4?' (dato)':' (control)'}: se corrige w ⊕ e.`,''];}));
+  $('#synTable').innerHTML=rows.map(r=>`<tr${r[3]?' class="hl"':''}><td class="mono"><b>${r[0]}</b></td><td class="mono">${r[1]}</td><td>${r[2]}</td></tr>`).join('');
+})();
+let synD=7,synW=encode(bits4(7)),synFlip=new Set();
+function renderSyn(){
+  const pick=$('#pick2');if(!pick.children.length){for(let d=0;d<=9;d++){const b=document.createElement('button');b.textContent=d;b.addEventListener('click',()=>{synD=d;synW=encode(bits4(d));synFlip.clear();renderSyn();});pick.appendChild(b);}}
+  [...pick.children].forEach((x,k)=>x.setAttribute('aria-pressed',k===synD));
+  const w=synW.map((b,i)=>b^(synFlip.has(i)?1:0)),fb=$('#flipBits');fb.innerHTML='';
+  w.forEach((b,i)=>{if(i===4){const g=document.createElement('span');g.className='gap';fb.appendChild(g);}
+    const btn=document.createElement('button');btn.className=(b?'one':'')+(synFlip.has(i)?' err':'');btn.innerHTML=`${b}<small>bit ${i+1}</small>`;btn.setAttribute('aria-label',`bit ${i+1}, vale ${b}`);
+    btn.addEventListener('click',()=>{synFlip.has(i)?synFlip.delete(i):synFlip.add(i);renderSyn();});fb.appendChild(btn);});
+  const s=syndrome(w),p=rowOf(s),c=w.slice();if(p>=0)c[p]^=1;const val=fromBits(c.slice(0,4));
+  let txt=`Enviado c = ${synW.join('')} · recibido w = ${w.join('')} · errores: ${synFlip.size}<br><i>s</i>(<i>w</i>) = <i>w</i>·<i>H</i> = <b>${s.join('')}</b><br>`;
+  if(p<0)txt+=`Síndrome nulo: w ∈ C. Dígito <b>${fromBits(w.slice(0,4))}</b>.`;
+  else txt+=`${s.join('')} es la fila ${p+1} de H → e = bit ${p+1} → w ⊕ e = <b>${c.join('')}</b> → dígito <b style="color:${val===synD?'var(--ok)':'var(--err)'}">${val}</b>${val===synD?' ✓':' ✕ corrección equivocada (hubo más de un error)'}`;
+  $('#synTxt').innerHTML=txt;
+}
+renderSyn();
+
+/* ================= Entrelazado ================= */
+let miniRows=false,miniDmg=false;
+function renderMini(){
+  const m=miniRows?METHODS.hrow:METHODS.hcol,g=buildGrid(m,state.d7);
+  const dmg=new Set();if(miniDmg)for(let c=0;c<7;c++)dmg.add('3,'+c);
+  drawSymbol($('#miniSvg'),applyDamage(g,dmg),{colorWords:true,layout:m.layout,dmg,zone:true});
+  if(!miniDmg)$('#miniTxt').textContent=miniRows?'Por filas: cada fila de la zona es una palabra (cada color, un dígito).':'Por columnas: cada columna de la zona es una palabra (cada color, un dígito).';
+  else{const e=evaluate(m,applyDamage(g,dmg),state.d7);
+    $('#miniTxt').innerHTML=miniRows?`El rayón cae entero sobre <b>una sola palabra</b>: 7 errores en el dígito 4. <b style="color:var(--err)">No se recupera.</b>`:`El rayón toca <b>un bit de cada palabra</b>. Se corrigen ${e.corrections} y vuelve <b style="color:var(--ok)">${numTxt(e.values)}</b>.`;}
+}
+function setLayout(rows){miniRows=rows;$('#segCol').setAttribute('aria-pressed',!rows);$('#segRow').setAttribute('aria-pressed',rows);renderMini();}
+$('#segCol').addEventListener('click',()=>setLayout(false));$('#segRow').addEventListener('click',()=>setLayout(true));
+$('#miniScratch').addEventListener('click',()=>{miniDmg=true;renderMini();});
+$('#miniClear').addEventListener('click',()=>{miniDmg=false;renderMini();});
+
+/* ================= Laboratorio ================= */
+function renderLab(){
+  const m=METHODS[state.method];
+  drawSymbol($('#labSvg'),applyDamage(truthGrid(),state.dmg),{dmg:state.dmg,zone:state.zone});
+  const rs=$('#rowSel');const prev=rs.value;rs.innerHTML='';for(let r=0;r<m.rows;r++){const o=document.createElement('option');o.value=r;o.textContent='Fila '+(r+1);rs.appendChild(o);}
+  rs.value=prev&&+prev<m.rows?prev:Math.min(3,m.rows-1);
+  const n=state.dmg.size;$('#dmgTxt').textContent=`${n?n+' módulo'+(n>1?'s':'')+' dañado'+(n>1?'s':''):'Sin daño'} · zona ${m.rows} × 7`;
+  refreshFeed();
+}
+function toggleCell(r,c){const k=r+','+c;state.dmg.has(k)?state.dmg.delete(k):state.dmg.add(k);}
+function scratchRow(r){for(let c=0;c<7;c++)state.dmg.add(r+','+c);}
+$('#method').addEventListener('change',e=>{state.method=e.target.value;state.dmg.clear();renderLab();});
+$('#speed').value=state.speed;$('#speed').addEventListener('change',e=>state.speed=e.target.value);
+$('#zoneChk').addEventListener('change',e=>{state.zone=e.target.checked;renderLab();});
+$('#scratch1').addEventListener('click',()=>{scratchRow(+$('#rowSel').value);renderLab();});
+$('#scratch2').addEventListener('click',()=>{const m=METHODS[state.method],r=+$('#rowSel').value;scratchRow(r);scratchRow(r+1<m.rows?r+1:r-1);renderLab();});
+$('#stain').addEventListener('click',()=>{const m=METHODS[state.method],r=Math.floor(Math.random()*(m.rows-1)),c=Math.floor(Math.random()*6);[[0,0],[0,1],[1,0],[1,1]].forEach(([a,b])=>state.dmg.add((r+a)+','+(c+b)));renderLab();});
+$('#randomDmg').addEventListener('click',()=>{state.dmg=randomDamage(METHODS[state.method]);renderLab();});
+$('#resetDmg').addEventListener('click',()=>{state.dmg.clear();renderLab();});
+(function(){const box=$('#qrbox');let drawing=false,touched=new Set();
+  const hit=e=>{const svg=$('#labSvg'),pt=svg.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;const p=pt.matrixTransform(svg.getScreenCTM().inverse());
+    const r=Math.floor(p.y-QZ-R0),c=Math.floor(p.x-QZ-C0),m=METHODS[state.method];
+    if(r>=0&&r<m.rows&&c>=0&&c<7){const k=r+','+c;if(!touched.has(k)){touched.add(k);toggleCell(r,c);renderLab();}}};
+  box.addEventListener('pointerdown',e=>{drawing=true;touched=new Set();box.setPointerCapture(e.pointerId);hit(e);});
+  box.addEventListener('pointermove',e=>{if(drawing)hit(e);});
+  box.addEventListener('pointerup',()=>drawing=false);box.addEventListener('pointercancel',()=>drawing=false);
+})();
+
+/* ================= Celular y cámara ================= */
+const phone=$('#phone'),scr=$('#phScreen'),feed=$('#feed'),ovl=$('#ovl');
+let feedDoc=null,PX=0,PY=0,busy=false;
+const K=()=>phone.offsetWidth<190?.5:.56;
+function setPhone(x,y){PX=x;PY=y;phone.style.transform=`translate(${x}px,${y}px)`;updateFeed();}
+function refreshFeed(){feed.innerHTML='';feedDoc=$('#doc').cloneNode(true);feedDoc.removeAttribute('id');feedDoc.classList.remove('r');feedDoc.style.opacity=1;feedDoc.style.transform='none';feedDoc.style.filter='';
+  feedDoc.querySelectorAll('[id]').forEach(n=>{if(n.tagName!=='path'||!n.closest('defs'))n.removeAttribute('id');});feed.appendChild(feedDoc);updateFeed();}
+function updateFeed(){if(!feedDoc)return;const S=scr.getBoundingClientRect(),P=$('#doc').getBoundingClientRect();
+  feedDoc.style.width=P.width+'px';feedDoc.style.left=(P.left-S.left)+'px';feedDoc.style.top=(P.top-S.top)+'px';feed.style.transform=`scale(${K()})`;}
+function qrInScreen(){const S=scr.getBoundingClientRect(),Q=$('#labSvg').getBoundingClientRect(),k=K();
+  const sx=S.left+S.width/2,sy=S.top+S.height/2;return {x:S.width/2+k*(Q.left-sx),y:S.height/2+k*(Q.top-sy),s:Q.width*k,S};}
+function locked(){const q=qrInScreen(),m=6;return q.x>m&&q.y>q.S.height*.12&&q.x+q.s<q.S.width-m&&q.y+q.s<q.S.height*.8;}
+function markFinders(show){ovl.innerHTML='';phone.classList.toggle('locked',show);$('#idle').style.opacity=show?0:1;if(!show)return null;
+  const q=qrInScreen(),u=q.s/TOT,g=el('g',{},ovl);
+  [[0,0],[0,N-7],[N-7,0]].forEach(([r,c])=>el('rect',{x:q.x+(c+QZ-.4)*u,y:q.y+(r+QZ-.4)*u,width:7.8*u,height:7.8*u,fill:'rgba(255,214,10,.12)',stroke:'#FFD60A','stroke-width':2,rx:3},g));
+  return {q,u,g};}
+const wait0=ms=>new Promise(r=>setTimeout(r,ms));
+async function cameraSequence(){
+  const fast=state.speed==='rapida'||REDUCED,f=fast?.35:1;
+  const mk=markFinders(true),{q,u}=mk;
+  if(G_OK&&!fast)gsap.from(mk.g.children,{scale:1.8,opacity:0,transformOrigin:'50% 50%',stagger:.12,duration:.35,ease:'back.out(2)'});
+  await wait0(650*f);
+  const pts=[[QZ,QZ],[N+QZ,QZ],[N+QZ,N+QZ],[QZ,N+QZ]].map(([a,b])=>`${q.x+a*u},${q.y+b*u}`).join(' ');
+  const poly=el('polygon',{points:pts,fill:'none',stroke:'#FFD60A','stroke-width':2},ovl);
+  if(G_OK&&!fast){const L=4*N*u;gsap.fromTo(poly,{attr:{'stroke-dasharray':L,'stroke-dashoffset':L}},{attr:{'stroke-dashoffset':0},duration:.5});}
+  await wait0(500*f);
+  const dots=el('g',{},ovl);
+  for(let r=0;r<N;r++)for(let c=0;c<N;c++)el('circle',{cx:q.x+(c+QZ+.5)*u,cy:q.y+(r+QZ+.5)*u,r:Math.max(.7,u*.18),fill:'#30D158'},dots);
+  if(G_OK&&!fast)gsap.from(dots.children,{opacity:0,duration:.15,stagger:{each:.0022,from:'start'}});
+  await wait0(1100*f);
+  el('rect',{x:q.x+(C0+QZ)*u,y:q.y+(R0+QZ)*u,width:7*u,height:METHODS[state.method].rows*u,fill:'rgba(48,209,88,.2)',stroke:'#30D158','stroke-width':2,rx:2},ovl);
+  const toast=$('#toast');$('#toastTxt').textContent='Código detectado';
+  if(G_OK)gsap.fromTo(toast,{opacity:0,y:8},{opacity:1,y:0,duration:.3});else toast.style.opacity=1;
+  await wait0(700*f);$('#toastTxt').textContent='Decodificando…';
+  if(G_OK&&!fast){const o={x:PX};await new Promise(res=>gsap.to(o,{keyframes:[{x:PX-3},{x:PX+3},{x:PX}],duration:.18,onUpdate:()=>setPhone(o.x,PY),onComplete:res}));}
+  await wait0(500*f);
+}
+function phoneHome(){ovl.innerHTML='';phone.classList.remove('locked');$('#idle').style.opacity=1;$('#toast').style.opacity=0;
+  if(G_OK&&!REDUCED){const o={x:PX,y:PY};gsap.to(o,{x:0,y:0,duration:.7,ease:'power3.out',onUpdate:()=>setPhone(o.x,o.y)});}else setPhone(0,0);}
+async function flyAndScan(){
+  if(busy)return;busy=true;
+  const qb=$('#qrbox').getBoundingClientRect();
+  if(qb.top<70||qb.bottom>innerHeight-20){document.documentElement.style.scrollSnapType='none';scrollTo({top:scrollY+qb.top+qb.height/2-innerHeight/2,behavior:REDUCED?'auto':'smooth'});await wait0(REDUCED?60:700);}
+  const S=scr.getBoundingClientRect(),Q=$('#labSvg').getBoundingClientRect();
+  const tx=PX+(Q.left+Q.width/2)-(S.left+S.width/2),ty=PY+(Q.top+Q.height/2)-(S.top+S.height/2)+S.height*.05;
+  if(G_OK&&!REDUCED){const o={x:PX,y:PY};await new Promise(res=>gsap.to(o,{x:tx,y:ty,duration:1.1,ease:'power3.inOut',onUpdate:()=>setPhone(o.x,o.y),onComplete:res}));}
+  else setPhone(tx,ty);
+  await cameraSequence();busy=false;openTheater();
+}
+(function(){let sx=0,sy=0,ox=0,oy=0,drag=false;
+  phone.addEventListener('pointerdown',e=>{if(busy)return;drag=true;sx=e.clientX;sy=e.clientY;ox=PX;oy=PY;phone.setPointerCapture(e.pointerId);document.documentElement.style.scrollSnapType='none';});
+  phone.addEventListener('pointermove',e=>{if(!drag)return;setPhone(ox+e.clientX-sx,oy+e.clientY-sy);markFinders(locked());});
+  const end=async()=>{if(!drag)return;drag=false;
+    if(locked()){busy=true;await cameraSequence();busy=false;openTheater();}else{phoneHome();document.documentElement.style.scrollSnapType='';}};
+  phone.addEventListener('pointerup',end);phone.addEventListener('pointercancel',end);
+  phone.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();flyAndScan();}});
+})();
+$('#scanBtn').addEventListener('click',flyAndScan);
+addEventListener('resize',updateFeed);addEventListener('scroll',updateFeed,{passive:true});
+
+/* ================= Teatro ================= */
+let RUN=null;
+const SPEED={cine:1,clase:1,rapida:.18};
+function wait(ms){return new Promise((res,rej)=>{if(!RUN)return rej('x');const f=RUN.skip?0:SPEED[state.speed];const id=setTimeout(()=>RUN&&!RUN.cancel?res():rej('cancel'),ms*f);RUN.timers.push(id);});}
+function tw(target,vars){return new Promise(res=>{const f=(!RUN||RUN.skip||REDUCED)?0:SPEED[state.speed];if(!G_OK){res();return;}if(f===0){gsap.set(target,Object.assign({},vars,{duration:0}));res();return;}gsap.to(target,Object.assign({},vars,{duration:(vars.duration||.5)*f,onComplete:res}));});}
+function twFrom(target,vars){if(!G_OK||!RUN||RUN.skip||REDUCED)return Promise.resolve();const f=SPEED[state.speed];return new Promise(res=>gsap.from(target,Object.assign({ease:'power3.out'},vars,{duration:(vars.duration||.5)*f,onComplete:res})));}
+async function gate(){if(state.speed!=='clase'||RUN.skip)return;const n=$('#thNext');n.hidden=false;n.focus();await new Promise((res,rej)=>{RUN.next=res;RUN.rejNext=rej;});n.hidden=true;}
+$('#thNext').addEventListener('click',()=>{if(RUN&&RUN.next){const f=RUN.next;RUN.next=null;f();}});
+$('#thSkip').addEventListener('click',()=>{if(!RUN)return;RUN.skip=true;RUN.timers.forEach(clearTimeout);if(G_OK)gsap.globalTimeline.getChildren(true,true,false).forEach(t=>{if(t.vars&&t.vars.onComplete)t.progress(1);});if(RUN.next){const f=RUN.next;RUN.next=null;f();}$('#thNext').hidden=true;});
+$('#thClose').addEventListener('click',closeTheater);
+function closeTheater(){if(RUN){RUN.cancel=true;RUN.timers.forEach(clearTimeout);if(RUN.rejNext)RUN.rejNext('cancel');}RUN=null;
+  const th=$('#theater');const done=()=>{th.hidden=true;document.body.style.overflow='';document.documentElement.style.scrollSnapType='';phoneHome();phone.focus({preventScroll:true});};
+  if(G_OK&&!REDUCED)gsap.to(th,{opacity:0,y:30,duration:.35,ease:'power2.in',onComplete:()=>{gsap.set(th,{clearProps:'all'});done();}});else done();}
+function setStep(i,total,title,text){$('#thStep').textContent=`Paso ${i} de ${total}`;$('#thTitle').textContent=title;$('#thText').innerHTML=text;const f=$('#thFoot');f.innerHTML='';for(let k=1;k<=total;k++){const b=document.createElement('i');if(k<=i)b.className='on';f.appendChild(b);}
+  if(G_OK&&!REDUCED&&RUN&&!RUN.skip)gsap.from(['#thTitle','#thText'],{y:16,opacity:0,filter:'blur(6px)',stagger:.08,duration:.5,ease:'power3.out'});}
+function stageClear(){const s=$('#stage');s.innerHTML='';return s;}
+function mk(tag,cls,html){const e=document.createElement(tag);if(cls)e.className=cls;if(html!==undefined)e.innerHTML=html;return e;}
+function bitEl(b,cls=''){return mk('div','bit'+(b?' one':'')+(cls?' '+cls:''),b);}
+async function openTheater(){
+  if(RUN){RUN.cancel=true;RUN.timers.forEach(clearTimeout);}
+  RUN={cancel:false,skip:false,timers:[]};
+  const th=$('#theater');th.hidden=false;document.body.style.overflow='hidden';$('#thNext').hidden=true;$('#thSkip').hidden=false;
+  if(G_OK&&!REDUCED)gsap.fromTo(th,{opacity:0,y:40},{opacity:1,y:0,duration:.5,ease:'power3.out'});
+  try{await runScan();}catch(e){if(e!=='cancel'&&e!=='x')console.error(e);}
+}
+async function runScan(){
+  const m=METHODS[state.method],truth=state.d7,grid=applyDamage(truthGrid(),state.dmg),ev=evaluate(m,grid,truth),ham=m.check==='hamming';
+  const steps=ham?7:(m.verifier?6:5);let st=0;const wordName=m.layout==='row'?'fila':'columna';
+  setStep(++st,steps,'Ubicar y muestrear el símbolo','Los tres <b>patrones de posición</b> dan orientación y escala; el <b>sincronismo</b> da la grilla de 21 × 21. Cada módulo se umbraliza: negro → 1, blanco → 0. <b>El lector no sabe cuáles están dañados.</b>');
+  let s=stageClear();const cap=mk('div','capture');s.appendChild(cap);
+  const symW=mk('div','sym');const sv=document.createElementNS(NS,'svg');symW.appendChild(sv);cap.appendChild(symW);drawSymbol(sv,grid,{dmg:state.dmg});
+  const hl=el('g',{'shape-rendering':'auto'},sv);
+  const fins=[[0,0],[0,N-7],[N-7,0]].map(([r,c])=>el('rect',{x:c+QZ-.3,y:r+QZ-.3,width:7.6,height:7.6,rx:.6,fill:'none',stroke:'#FF9500','stroke-width':.35,opacity:0},hl));
+  const tim=[el('rect',{x:8+QZ,y:6+QZ,width:N-16,height:1,fill:'rgba(0,122,255,.4)',opacity:0},hl),el('rect',{x:6+QZ,y:8+QZ,width:1,height:N-16,fill:'rgba(0,122,255,.4)',opacity:0},hl)];
+  const zr=el('rect',{x:C0+QZ,y:R0+QZ,width:7,height:m.rows,fill:'rgba(52,199,89,.2)',stroke:'#34C759','stroke-width':.3,opacity:0},hl);
+  cap.appendChild(mk('div','legend2',`<span><i style="border:2px solid #FF9500"></i>Patrones de posición</span><span><i style="background:rgba(0,122,255,.4)"></i>Sincronismo: 21 módulos por lado</span><span><i style="background:rgba(52,199,89,.25);border:1px solid #34C759"></i>Zona de datos: ${m.rows} × 7</span>`));
+  await twFrom(symW,{opacity:0,scale:.9,duration:.6});
+  for(const f of fins){await tw(f,{opacity:1,duration:.3});await wait(140);}
+  await tw(tim,{opacity:1,duration:.4});await wait(300);await tw(zr,{opacity:1,duration:.4});await wait(400);
+  const gridEl=mk('div','bitgrid');gridEl.style.gridTemplateColumns='repeat(7, auto)';grid.forEach(r=>r.forEach(b=>gridEl.appendChild(bitEl(b))));cap.appendChild(gridEl);
+  await twFrom(gridEl.children,{opacity:0,scale:.3,stagger:{each:.012,from:'start'},duration:.3});
+  await wait(900);await gate();
+
+  setStep(++st,steps,'Separar en palabras',m.layout==='row'?'Cada <b>fila</b> de la zona es una palabra.':`Cada <b>columna</b> es una palabra: los 4 bits de un dígito${ham?' y sus 3 de control':m.check==='parity'?' y su paridad':''}.`);
+  s=stageClear();const cards=mk('div','cards');s.appendChild(cards);
+  ev.per.forEach((p,j)=>{const c=mk('div','wcard');c.appendChild(mk('div','hd',`${wordName} ${j+1}`));const col=mk('div','col');p.w.forEach(b=>col.appendChild(bitEl(b)));c.appendChild(col);cards.appendChild(c);});
+  await twFrom(cards.children,{y:-30,opacity:0,stagger:.08,duration:.5,ease:'back.out(1.6)'});await wait(900);await gate();
+
+  if(ham){
+    let j=ev.per.findIndex(p=>p.pos>=0);if(j<0)j=0;const p=ev.per[j];
+    setStep(++st,steps,`Síndrome de la ${wordName} ${j+1}`,'<span class="m"><i>s</i>(<i>w</i>) = <i>w</i>·<i>H</i></span>: sumar con XOR las filas de H donde la palabra tiene un 1. Si da 000, <span class="m"><i>w</i> ∈ C</span>. Si no, coincide con una fila de H: el líder de la clase, el bit alterado.');
+    s=stageClear();const det=mk('div','detail');s.appendChild(det);
+    const cw=mk('div','colw');cw.appendChild(mk('div','lbl','w leída'));const wb=p.w.map(b=>{const e=bitEl(b);cw.appendChild(e);return e;});det.appendChild(cw);
+    const hw=mk('div','colw');hw.appendChild(mk('div','lbl','H'));const mx=mk('div','mx'),bm=mk('div','bm'),rl=mk('div','rl');mx.appendChild(bm);mx.appendChild(rl);
+    const hr=fillBM(bm,H,(jj,r)=>H.indexOf(r)<4?'a':'i');rl.innerHTML=H.map((_,i)=>`<span>bit ${i+1}</span>`).join('');hw.appendChild(mx);det.appendChild(hw);
+    const acc=mk('div','acc');acc.appendChild(mk('div','lbl','suma XOR'));det.appendChild(acc);
+    await twFrom(det.children,{opacity:0,y:16,stagger:.12});
+    let sum=[0,0,0],first=true;
+    for(let i=0;i<7;i++){if(!p.w[i])continue;wb[i].classList.add('hit');hr[i].classList.add('on');sum=xor(sum,H[i]);
+      const ln=mk('div','ln',`<span class="who">${first?'':'⊕ '}fila ${i+1}</span><span>${H[i].join('')}</span><span class="status">→ ${sum.join('')}</span>`);first=false;acc.appendChild(ln);
+      await twFrom(ln,{x:-24,opacity:0,duration:.4});await wait(460);}
+    const tot=mk('div','tot',`s(w) = ${p.s.join('')}`);acc.appendChild(tot);await twFrom(tot,{scale:.6,opacity:0,duration:.45,ease:'back.out(2)'});
+    await wait(600);hr.forEach(r=>r.classList.remove('on'));wb.forEach(b=>b.classList.remove('hit'));
+    if(p.pos<0){acc.appendChild(mk('div','status','000: w ∈ C. Nada que corregir.'));await wait(800);}
+    else{hr[p.pos].classList.add('hit');acc.appendChild(mk('div','status',`${p.s.join('')} = fila ${p.pos+1} de H → e = bit ${p.pos+1}`));await wait(650);
+      wb[p.pos].classList.add('err');await tw(wb[p.pos],{scale:1.2,duration:.25});await wait(450);
+      wb[p.pos].textContent=p.c[p.pos];wb[p.pos].classList.remove('err','one');wb[p.pos].classList.add('fix');await tw(wb[p.pos],{scale:1,duration:.3,ease:'back.out(3)'});
+      acc.appendChild(mk('div','status',`w ⊕ e = <b style="color:var(--ok)">${p.c.join('')}</b>`));}
+    await wait(1000);await gate();
+  }
+
+  setStep(++st,steps,ham?'Todas las palabras':(m.check==='parity'?'Paridad por palabra':'Sin control'),ham?'El mismo cálculo en cada palabra. Cada una corrige a lo sumo <b>un</b> bit.':(m.check==='parity'?'Cada columna debe tener una cantidad par de unos. Si falla, hay error, pero <b>no se sabe dónde</b>.':'Este método acepta lo que leyó.'));
+  s=stageClear();const cards2=mk('div','cards');s.appendChild(cards2);const vEls=[];
+  ev.per.forEach((p,j)=>{const c=mk('div','wcard');c.appendChild(mk('div','hd',`${wordName} ${j+1}`));const col=mk('div','col');const bs=p.w.map(b=>{const e=bitEl(b);col.appendChild(e);return e;});c.appendChild(col);
+    c.appendChild(ham?mk('div','tag '+(p.pos<0?'ok':'info'),p.s.join('')):m.check==='parity'?mk('div','tag '+(p.detected?'bad':'ok'),p.detected?'impar':'par'):mk('div','tag warn','—'));cards2.appendChild(c);vEls.push({bs,p});});
+  await twFrom(cards2.children,{opacity:0,y:16,stagger:.05,duration:.35});
+  for(const {bs,p} of vEls){if(p.pos>=0){bs[p.pos].classList.add('err');await wait(150);bs[p.pos].textContent=p.c[p.pos];bs[p.pos].classList.remove('err','one');bs[p.pos].classList.add('fix');}else await wait(70);}
+  const nC=ev.corrections,nD=ev.per.filter(p=>p.detected).length;
+  s.appendChild(mk('p','verdict',ham?`${nC} bit${nC===1?'':'s'} corregido${nC===1?'':'s'}.`:(m.check==='parity'?(nD?`La paridad falló en ${nD} palabra${nD>1?'s':''}: hay que reescanear.`:'Todas dan par. Ojo: dos errores en una palabra también dan par.'):'Lo leído es lo aceptado.')));
+  await wait(1000);await gate();
+
+  setStep(++st,steps,'De bits a dígitos','Los 4 primeros bits de cada palabra, en decimal. Los seis primeros deben ser 0 a 9; el verificador puede ser 10 (X).');
+  s=stageClear();const vr=mk('div','vrow');s.appendChild(vr);
+  ev.values.forEach((v,i)=>{const ok=i<6?v<=9:v<=(m.verifier?10:9);const c=mk('div','wcard');c.appendChild(mk('div','hd',ev.per[i].c.slice(0,4).join('')));c.appendChild(mk('div','val',`<span style="color:${ok?'var(--text)':'var(--err)'}">${ok?digTxt(v):v}</span>`));vr.appendChild(c);});
+  await twFrom(vr.children,{opacity:0,y:-16,stagger:.07,duration:.4});
+  if(ev.badFormat)s.appendChild(mk('p','verdict','<span style="color:var(--err)">Hay un valor mayor que 9: la lectura no puede ser correcta.</span>'));
+  await wait(1000);await gate();
+
+  if(m.verifier){
+    setStep(++st,steps,'Control en ℤ₁₁','Cada dígito por su peso. Si la lectura es correcta, la suma es ≡ 0 (mod 11).');
+    s=stageClear();const dr=mk('div','digits');ev.values.forEach((v,i)=>dr.appendChild(mk('div','dg'+(i===6?' ver':''),`<span class="d">${v<=10?digTxt(v):v}</span><span class="w">×${WEI7[i]}</span><span class="p">${v*WEI7[i]}</span>`)));s.appendChild(dr);
+    await twFrom(dr.children,{opacity:0,y:14,stagger:.06});
+    const tot=wsum(ev.values),out=mk('div','acc');out.style.textAlign='center';const big=mk('div','tot','Σ = 0');out.appendChild(big);s.appendChild(out);
+    if(G_OK&&!RUN.skip&&!REDUCED){const o={n:0};await tw(o,{n:tot,duration:1,ease:'power2.out',onUpdate:()=>big.textContent='Σ = '+Math.round(o.n)});}
+    big.textContent=`Σ = ${tot} = 11 · ${Math.floor(tot/11)} + ${tot%11}`;big.style.color=tot%11===0?'var(--ok)':'var(--err)';
+    out.appendChild(mk('div','status',tot%11===0?`${tot} ≡ 0 (mod 11) ✓`:`${tot} ≡ ${tot%11} (mod 11): no puede ser el original.`));
+    await wait(1100);await gate();
+  }
+
+  setStep(++st,steps,'Resultado','');
+  s=stageClear();
+  const label={ok:'ÍNTEGRO',reject:'RECHAZADO',silent:'ACEPTADO'}[ev.status],cls={ok:'ok',reject:'bad',silent:'warn'}[ev.status];
+  const ph=mk('div','phone rphone');ph.innerHTML=`<div class="ph-screen"><div class="rscreen"><div class="app">Verificación de constancia</div><div class="seal ${cls}">${label}</div><div class="rn">${ev.status==='reject'?'— — —':'N.º '+numTxt(ev.values)}</div><div class="msg">${ev.status==='reject'?'No se pudo leer. Volvé a escanear.':ev.corrections?`${ev.corrections} bit${ev.corrections>1?'s':''} corregido${ev.corrections>1?'s':''} automáticamente.`:'Lectura sin correcciones.'}</div></div></div><div class="island"></div>`;
+  s.appendChild(ph);
+  await twFrom(ph,{scale:.86,opacity:0,y:30,duration:.7,ease:'expo.out'});
+  await twFrom(ph.querySelector('.seal'),{scale:1.8,opacity:0,duration:.5,ease:'back.out(1.8)'});
+  const tt=numTxt(truth);
+  s.appendChild(mk('p','verdict',ev.status==='ok'?`Coincide con el original (${tt}). <b>Íntegro</b> significa sin errores de lectura, no que el documento sea auténtico.`:ev.status==='reject'?`${ev.reason} Mejor pedir otra lectura que inventar un número.`:`<b style="color:var(--err)">Error silencioso.</b> Se leyó ${numTxt(ev.values)} y el original era ${tt}. ${ev.reason}`));
+  if(state.dmg.size){const rev=mk('div','bitgrid');rev.style.gridTemplateColumns='repeat(7, auto)';grid.forEach((r,ri)=>r.forEach((b,ci)=>{const e=bitEl(b,state.dmg.has(ri+','+ci)?'miss':'dim');e.style.width='24px';e.style.fontSize='.72rem';rev.appendChild(e);}));
+    s.appendChild(mk('p','status','Dónde estaba el daño (borde naranja):'));s.appendChild(rev);}
+  $('#thSkip').hidden=true;
+}
+
+/* ================= Comparación ================= */
+function randomDamage(m,type){
+  const R=m.rows,d=new Set(),rnd=n=>Math.floor(Math.random()*n);
+  const t=type||['cell','cell','cell','two','two','row','row','row','stain','rows2'][rnd(10)];
+  if(t==='cell')d.add(rnd(R)+','+rnd(7));
+  if(t==='two'){while(d.size<2)d.add(rnd(R)+','+rnd(7));}
+  if(t==='row'){const r=rnd(R);for(let c=0;c<7;c++)d.add(r+','+c);}
+  if(t==='rows2'){const r=rnd(R-1);for(let c=0;c<7;c++){d.add(r+','+c);d.add((r+1)+','+c);}}
+  if(t==='stain'){const r=rnd(R-1),c=rnd(6);d.add(r+','+c);d.add((r+1)+','+c);d.add(r+','+(c+1));d.add((r+1)+','+(c+1));}
+  return d;
+}
+const ORDER=['none','ver','par','hrow','hcol'];
+function scenarioDamage(m,kind){const d=new Set();
+  if(kind==='cell')d.add('1,3');
+  if(kind==='row')for(let c=0;c<7;c++)d.add('2,'+c);
+  if(kind==='rows2')for(let c=0;c<7;c++){d.add('2,'+c);d.add('3,'+c);}
+  if(kind==='stain')['1,1','1,2','2,1','2,2'].forEach(k=>d.add(k));
+  return d;}
+function icon(st){return st==='ok'?'<span class="tag ok">Correcto</span>':st==='reject'?'<span class="tag warn">Reescanear</span>':'<span class="tag bad">Error silencioso</span>';}
+function renderCompare(){
+  const kinds=[['cell','1 módulo'],['row','Rayón en 1 fila'],['rows2','Rayón en 2 filas'],['stain','Mancha 2 × 2']];
+  let h='<thead><tr><th>Método</th><th>Módulos</th>'+kinds.map(k=>`<th>${k[1]}</th>`).join('')+'<th>Tipeo invertido</th></tr></thead><tbody>';
+  const typo=state.d7.slice();let i=1;while(i<5&&typo[i]===typo[i+1])i++;[typo[i],typo[i+1]]=[typo[i+1],typo[i]];
+  ORDER.forEach(id=>{const m=METHODS[id],g=buildGrid(m,state.d7);
+    h+=`<tr class="${id==='hcol'?'hl':''}"><td>${id==='hcol'?'<b>'+m.name+'</b>':m.name}</td><td class="mono">${m.rows*7}</td>`;
+    kinds.forEach(k=>{h+=`<td>${icon(evaluate(m,applyDamage(g,scenarioDamage(m,k[0])),state.d7).status)}</td>`;});
+    h+=`<td>${icon(m.verifier?(mod11(typo)===0?'silent':'reject'):'silent')}</td></tr>`;});
+  $('#cmpTable').innerHTML=h+'</tbody>';
+}
+function renderBars(res){const b=$('#bars');b.innerHTML='';ORDER.forEach(id=>{const r=res?res[id]:{ok:0,reject:0,silent:0};const row=mk('div','bar');
+  row.innerHTML=`<span class="nm">${METHODS[id].short}${res?` <span class="status">· ${r.ok} / ${r.reject} / ${r.silent}</span>`:''}</span><div class="tr"><span style="width:0;background:var(--ok)"></span><span style="width:0;background:var(--warn)"></span><span style="width:0;background:var(--err)"></span></div>`;b.appendChild(row);
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{const sp=row.querySelectorAll('.tr span');sp[0].style.width=r.ok+'%';sp[1].style.width=r.reject+'%';sp[2].style.width=r.silent+'%';}));});}
+function burst(){const res={};ORDER.forEach(id=>res[id]={ok:0,reject:0,silent:0});
+  const types=['cell','cell','cell','two','two','row','row','row','stain','rows2'];
+  for(let n=0;n<100;n++){const t=types[Math.floor(Math.random()*types.length)];ORDER.forEach(id=>{const m=METHODS[id];res[id][evaluate(m,applyDamage(buildGrid(m,state.d7),randomDamage(m,t)),state.d7).status]++;});}
+  renderBars(res);}
+$('#burstBtn').addEventListener('click',burst);
+
+/* ================= Límites ================= */
+function stTxt(e){return e.status==='reject'?'rechazado ✓':e.status==='ok'?'correcto':'¡error silencioso!';}
+function renderLimits(){
+  const m=METHODS.hcol,g=buildGrid(m,state.d7);
+  const e1=evaluate(m,applyDamage(g,scenarioDamage(m,'rows2')),state.d7);$('#lim1').textContent=`Con ${numTxt(state.d7)}: ${e1.values.join(', ')} → ${stTxt(e1)}`;
+  const e2=evaluate(m,applyDamage(g,scenarioDamage(m,'stain')),state.d7);$('#lim2').textContent=`${e2.values.join(', ')} → ${stTxt(e2)}`;
+  const mr=METHODS.hrow,e4=evaluate(mr,applyDamage(buildGrid(mr,state.d7),scenarioDamage(mr,'row')),state.d7);$('#lim4').textContent=`El tercer dígito sale ${e4.values[2]} → ${stTxt(e4)}`;
+}
+$$('[data-limit]').forEach(b=>b.addEventListener('click',()=>{
+  const k=b.dataset.limit;
+  if(k==='fake'){setNumber([...Array(6)].map(()=>Math.floor(Math.random()*10)));state.method='hcol';}else state.method=k==='rows'?'hrow':'hcol';
+  $('#method').value=state.method;state.dmg=k==='fake'?new Set():scenarioDamage(METHODS[state.method],k==='two'?'rows2':k==='stain'?'stain':'row');
+  renderLab();go(slides.indexOf($('#laboratorio')));setTimeout(flyAndScan,REDUCED?0:900);
+}));
+
+/* ================= Animaciones al entrar en cada pantalla ================= */
+function splitWords(h){const walk=n=>{[...n.childNodes].forEach(c=>{if(c.nodeType===3){const f=document.createDocumentFragment();c.nodeValue.split(/(\s+)/).forEach(t=>{if(!t)return;if(/^\s+$/.test(t)){f.appendChild(document.createTextNode(t));return;}const o=document.createElement('span');o.className='wd';const i=document.createElement('span');i.textContent=t;o.appendChild(i);f.appendChild(o);});c.replaceWith(f);}else if(c.nodeType===1&&!c.classList.contains('m'))walk(c);});};walk(h);}
+function wrapOps(){const w=document.createTreeWalker($('main'),NodeFilter.SHOW_TEXT);const list=[];while(w.nextNode()){const n=w.currentNode;if(n.nodeValue.includes('⊕')&&!n.parentElement.closest('svg,.xor,.acc,#synTxt,.op'))list.push(n);}
+  list.forEach(n=>{const f=document.createDocumentFragment();n.nodeValue.split('⊕').forEach((t,i)=>{if(i){const s=document.createElement('span');s.className='op';s.textContent='⊕';f.appendChild(s);}f.appendChild(document.createTextNode(t));});n.replaceWith(f);});}
+const ON_ENTER={
+  canal1:s=>s.querySelectorAll('[data-count]').forEach(e=>countUp(e,2)),
+  lagrange:s=>s.querySelectorAll('[data-count]').forEach(e=>countUp(e,0)),
+  canal2:s=>gsap.from(s.querySelectorAll('.hbar .tr span'),{width:0,duration:1.4,stagger:.15,ease:'power3.out',delay:.3}),
+  mod11:()=>drawClock(0,true),
+  matG:s=>gsap.from(s.querySelectorAll('#gMat .c'),{opacity:0,scale:.4,duration:.4,stagger:{each:.025,grid:[4,7],from:'start'},ease:'back.out(2)',delay:.3}),
+  matH:s=>gsap.from(s.querySelectorAll('#hMat .c'),{opacity:0,x:20,duration:.4,stagger:{each:.03,grid:[7,3],from:'start'},ease:'power3.out',delay:.3}),
+  subgrupo:s=>gsap.from(s.querySelectorAll('#cwList span'),{opacity:0,y:20,scale:.9,duration:.45,stagger:.04,ease:'power3.out',delay:.2}),
+  sindrome:s=>gsap.from(s.querySelectorAll('#synTable tr'),{opacity:0,x:-30,duration:.45,stagger:.08,ease:'power3.out',delay:.3}),
+  entrelazado:()=>{setTimeout(()=>{miniDmg=true;renderMini();},1300);},
+  resistencia:()=>setTimeout(burst,900)
+};
+function countUp(e,dec){const v=parseFloat(e.dataset.count),o={n:0};gsap.to(o,{n:v,duration:1.6,ease:'power3.out',delay:.3,onUpdate:()=>e.textContent=o.n.toFixed(dec).replace('.',',')});}
+function setupReveal(){
+  $$('h2.words').forEach(splitWords);
+  if(!ST_OK||REDUCED){Object.values(ON_ENTER);return;}
+  slides.forEach(s=>{
+    const words=s.querySelectorAll('.wd>span'),items=s.querySelectorAll('.r');
+    gsap.set(words,{yPercent:110});gsap.set(items,{opacity:0,y:40,filter:'blur(10px)'});
+    ScrollTrigger.create({trigger:s,start:'top 65%',once:true,onEnter:()=>{
+      const tl=gsap.timeline();
+      tl.to(words,{yPercent:0,duration:.9,stagger:.045,ease:'expo.out'});
+      tl.to(items,{opacity:1,y:0,filter:'blur(0px)',duration:.9,stagger:.08,ease:'expo.out',clearProps:'filter,transform'},words.length?'-=.6':0);
+      if(ON_ENTER[s.id])ON_ENTER[s.id](s);
+    }});
+    /* salida: leve profundidad al dejar la pantalla */
+    const inner=s.querySelector('.in');
+    gsap.to(inner,{scale:.94,opacity:.35,ease:'none',scrollTrigger:{trigger:s,start:'bottom 70%',end:'bottom 5%',scrub:true}});
+  });
+  gsap.to('#heroSvg',{rotation:-8,scale:.85,ease:'none',scrollTrigger:{trigger:'#inicio',start:'top top',end:'bottom top',scrub:true}});
+}
+
+/* ================= Inicio ================= */
+renderDigits(state.d7);renderMod10();renderLab();renderMini();renderCompare();renderBars(null);renderLimits();drawClock(0,false);
+wrapOps();setupReveal();hero();
+})();
+</script>

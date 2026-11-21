@@ -1,0 +1,66 @@
+
+/* ===== Etapa 1 ===== */
+.e1chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.e1chips span{padding:6px 14px;border-radius:999px;background:var(--fill);font-size:.92rem;font-weight:500}
+.e1split{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:18px;align-items:start}
+@media (max-width:860px){.e1split{grid-template-columns:minmax(0,1fr)}}
+.e1side{display:grid;gap:14px;align-content:start;min-width:0}
+.e1info p{font-size:.98rem}
+.e1info b{font-weight:600}
+.g1,.g2,.g3,.hasse{width:100%;height:auto;display:block;overflow:visible}
+.gn{cursor:pointer}
+.gn rect{fill:var(--solid);stroke:var(--line);stroke-width:1.5;transition:fill .35s,stroke .35s}
+.gn text{font-size:13px;font-weight:600;fill:var(--text);text-anchor:middle;dominant-baseline:central;font-family:var(--f);pointer-events:none}
+.gn.iso rect{stroke-dasharray:4 4}
+.gn.sm text{font-size:11.5px}
+.gn.sel rect{stroke:var(--accent);stroke-width:2.5}
+.gn.nb rect{fill:var(--accent-soft);stroke:var(--accent)}
+.gn.path rect{fill:var(--accent);stroke:var(--accent)}.gn.path text{fill:#fff}
+.gn.cut rect{fill:var(--err-soft);stroke:var(--err);stroke-dasharray:5 4}.gn.cut{opacity:.55}
+.gn.lost rect{fill:var(--warn-soft);stroke:var(--warn)}
+.gn.lit rect{fill:var(--k3);stroke:var(--k3)}.gn.lit text{fill:#fff}
+.gn.done rect{fill:color-mix(in srgb,var(--k3) 22%,var(--solid));stroke:var(--k3)}
+.ge{stroke:var(--muted);stroke-opacity:.55;stroke-width:1.8;fill:none;transition:stroke .35s,stroke-opacity .35s,stroke-width .35s,opacity .35s}
+.ge.nb{stroke:var(--accent);stroke-opacity:1}
+.ge.path{stroke:var(--accent);stroke-opacity:1;stroke-width:4}
+.ge.gone{opacity:.08}
+.ge.cyc{stroke:var(--err);stroke-opacity:1;stroke-width:3.5}
+.ge.del{opacity:0}
+.ge.extra{stroke:var(--err);stroke-dasharray:6 5;stroke-opacity:1;stroke-width:2.5}
+.g2 .lvl{font-size:12px;font-weight:600;fill:var(--muted);text-anchor:middle;opacity:0;transition:opacity .5s}
+.g2 .col{fill:var(--accent-soft);opacity:0;transition:opacity .5s}
+.g2.leveled .lvl,.g2.leveled .col{opacity:1}
+.lv{display:flex;flex-wrap:wrap;gap:8px}
+.lv span{padding:6px 12px;border-radius:12px;background:var(--fill);font-size:.88rem;font-family:var(--f-mono)}
+.e1trail{font-size:.95rem;color:var(--muted);min-height:2.8em}
+.e1trail b{color:var(--text)}
+/* capas */
+.stack3{position:relative;height:clamp(300px,44vw,420px);perspective:1400px;display:grid;place-items:center}
+.layer{position:absolute;width:min(430px,78vw);aspect-ratio:2.25/1;border-radius:22px;background:color-mix(in srgb,var(--c) 14%,rgba(20,20,24,.85));border:1.5px solid var(--c);
+  box-shadow:0 30px 60px -20px rgba(0,0,0,.8),inset 0 0 40px -10px var(--c);display:grid;grid-template-rows:auto 1fr auto;padding:12px 18px;transform-style:preserve-3d;will-change:transform}
+.layer .lt{font-weight:600;color:var(--c);font-size:.95rem}
+.layer .lq{font-size:.95rem;color:#F5F5F7;font-weight:500}
+.layer svg{width:100%;height:100%;min-height:0}
+.layer svg text{font-size:9px;font-weight:600;fill:#F5F5F7;text-anchor:middle;dominant-baseline:central;font-family:var(--f)}
+/* parte A */
+.acts{display:flex;flex-wrap:wrap;gap:8px}
+.acts button{border:none;font:inherit;font-weight:600;padding:.55em 1.1em;border-radius:999px;cursor:pointer;background:var(--fill);color:var(--text);transition:background .25s,color .25s,transform .15s}
+.acts button[aria-pressed="true"]{background:var(--ok);color:#fff}
+.acts button:active{transform:scale(.95)}
+.q16{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:5px}
+.q16 span{font-family:var(--f-mono);font-size:.72rem;text-align:center;padding:6px 0;border-radius:8px;background:var(--fill);color:var(--muted);transition:background .3s,color .3s,transform .3s}
+.q16 span.on{background:var(--accent);color:#fff;transform:scale(1.12)}
+@media (max-width:420px){.q16{grid-template-columns:repeat(4,minmax(0,1fr))}}
+/* hasse */
+.hasse .hn{cursor:pointer}
+.hasse .hn rect{fill:var(--solid);stroke:var(--line);stroke-width:1.5;transition:fill .3s,stroke .3s}
+.hasse .hn text{font-size:13px;font-weight:600;fill:var(--text);text-anchor:middle;dominant-baseline:central;pointer-events:none;font-family:var(--f)}
+.hasse .hn.a rect{fill:var(--accent);stroke:var(--accent)}.hasse .hn.a text{fill:#fff}
+.hasse .hn.b rect{fill:var(--purple);stroke:var(--purple)}.hasse .hn.b text{fill:#fff}
+.hasse line{stroke:var(--muted);stroke-width:1.8;transition:stroke .3s,stroke-width .3s}
+.hasse line.on{stroke:var(--accent);stroke-width:3.5}
+.g3{max-height:44vh}
+.hasse{max-height:30vh}
+#roleBig{font-family:var(--f);font-size:1.25rem}
+#roleWhy div{display:block}
+.stack3{margin:8px 0 18px}

@@ -1,0 +1,10 @@
+
+/* ===== Etapa 4 · interacción sumada ===== */
+#cwList span{cursor:pointer;transition:background .3s,color .3s,transform .3s,box-shadow .3s}
+#cwList span:hover{transform:translateY(-2px)}
+#cwList span.ca{background:var(--k1);color:#fff}
+#cwList span.cb{background:var(--k4);color:#fff}
+#cwList span.cs{background:var(--ok);color:#fff;transform:scale(1.06);box-shadow:0 10px 24px -10px var(--ok)}
+#cwList span.ca small,#cwList span.cb small,#cwList span.cs small{color:rgba(255,255,255,.85)}
+.cwtxt{font-size:.98rem;min-height:1.6em}
+.cwtxt .m{white-space:nowrap}
