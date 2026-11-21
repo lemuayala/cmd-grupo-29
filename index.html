@@ -2339,7 +2339,7 @@ async function flyAndScan(){
   const end=async()=>{if(!drag)return;drag=false;
     if(locked()){busy=true;await cameraSequence();busy=false;openTheater();}else{phoneHome();document.documentElement.style.scrollSnapType='';}};
   phone.addEventListener('pointerup',end);phone.addEventListener('pointercancel',end);
-  phone.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();flyAndScan();}});
+  phone.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();flyAndScan();}});
 })();
 $('#scanBtn').addEventListener('click',flyAndScan);
 addEventListener('resize',updateFeed);addEventListener('scroll',updateFeed,{passive:true});
