@@ -2,6 +2,20 @@
 
 Todos los cambios visibles de la presentación. Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 
+## [1.1.0] · 2026-11-21
+
+### Agregado
+
+- Separador «04» para la Etapa 4, con el mismo estilo que las etapas 1 a 3.
+- Etapa 4 · **Mod 11 en vivo**: escribir un número, invertir o cambiar dígitos y ver por qué ℤ₁₁ lo detecta y ℤ₁₀ no.
+- Etapa 4 · **Clausura del subgrupo**: tocar dos palabras válidas y ver que su suma ⊕ también está en C.
+- Etapa 4 · **Probar el síndrome**: tocar bits de una palabra y ver cómo el síndrome encuentra y corrige el error.
+- Workflow de GitHub Actions que verifica `index.html` en cada PR y publica en GitHub Pages al mergear a `main`.
+
+### Cambiado
+
+- La portada del caso de la Etapa 4 pasa a ser la primera pantalla después del separador.
+
 ## [1.0.0] · 2026-11-21
 
 ### Agregado

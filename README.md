@@ -46,7 +46,7 @@ Licenciatura en Informática Educativa · Ciclo de Complementación Curricular �
 | **1** · Modelos en un aula virtual | Grafos, dígrafos y árboles | Camino mínimo y vértice de corte, detección del ciclo y orden en etapas, recorrido en preorden, capas en 3D, clases de equivalencia y diagrama de Hasse | ≈ 3 min |
 | **2** · Solicitudes de equivalencia | Relación de equivalencia | Agrupar las 10 solicitudes en K1–K4, propiedades, dígrafo y matriz, los 26 pares, contraejemplo de antisimetría | ≈ 3 min 30 s |
 | **3** · Turnos rotativos en una sala | Grupos cíclicos y ℤ₄ | Diagrama circular de turnos, tabla de la operación, generadores y subgrupos, isomorfismo con ℤ₄, paso r², predicción de cualquier semana | ≈ 3 min 30 s |
-| **4** · El QR que se cura solo | Códigos de grupo y aritmética modular | Módulo 11, matriz generadora, síndromes, entrelazado y el **laboratorio final** | ≈ 4 min |
+| **4** · El QR que se cura solo | Códigos de grupo y aritmética modular | Módulo 11 en vivo, matriz generadora, clausura del subgrupo, síndromes tocando bits, entrelazado y el **laboratorio final** | ≈ 4 min |
 
 Total: **≈ 14 minutos** de los 15 disponibles, con un minuto de margen para preguntas o imprevistos.
 
@@ -106,7 +106,13 @@ cmd-grupo-29/
 | `feature/*` | Cambios puntuales, salen de `develop` |
 
 **Nunca se pushea directo a `main`.** Los cambios llegan a `develop` y de ahí a `main` con un pull request.
-GitHub Pages publica `main` desde la raíz del repo.
+
+El workflow [`pages.yml`](.github/workflows/pages.yml) hace dos cosas:
+
+- En cada **pull request** regenera `index.html` desde `src/` y falla si no coincide con el commiteado.
+- En cada **merge a `main`** publica el sitio en GitHub Pages: https://lemuayala.github.io/cmd-grupo-29/
+
+> Configuración única: en **Settings → Pages → Build and deployment**, elegir **Source: GitHub Actions**.
 
 ## 📏 Reglas del proyecto
 
