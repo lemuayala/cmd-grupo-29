@@ -6,6 +6,8 @@ animaciones en las letras, acercamientos en los lugares clave y actividades que 
 
 ### ▶️ [Ver la presentación](https://lemuayala.github.io/cmd-grupo-29/)
 
+![Portada de la presentación con el logo de la Facultad de Ingeniería](docs/img/portada.png)
+
 > Se recomienda abrirla en pantalla completa (tecla **F**) en una notebook o un proyector.
 > En el celular también funciona: las diapositivas se acomodan y las actividades se tocan con el dedo.
 
@@ -49,6 +51,40 @@ Licenciatura en Informática Educativa · Ciclo de Complementación Curricular �
 | **4** · El QR que se cura solo | Códigos de grupo y aritmética modular | Módulo 11 en vivo, matriz generadora, clausura del subgrupo, síndromes tocando bits, entrelazado y el **laboratorio final** | ≈ 4 min |
 
 Total: **≈ 14 minutos** de los 15 disponibles, con un minuto de margen para preguntas o imprevistos.
+
+### 🖼️ Vistas previas
+
+**Etapa 1 · Integración de los tres modelos en capas 3D**
+
+![Etapa 1: integración de los modelos](docs/img/etapa1-integracion.png)
+
+**Etapa 2 · Dígrafo y matriz de la relación**
+
+![Animación del dígrafo y la matriz de la Etapa 2](docs/img/etapa2-grafo.gif)
+
+**Etapa 2 · Cantidad de pares**
+
+![Etapa 2: cantidad de pares](docs/img/etapa2-pares.png)
+
+**Etapa 3 · Grupo cíclico y subgrupos**
+
+![Animación del grupo cíclico de la Etapa 3](docs/img/etapa3-ciclico.gif)
+
+**Etapa 3 · Predecir una semana**
+
+![Etapa 3: predecir una semana](docs/img/etapa3-semana.png)
+
+**Etapa 4 · Módulo 11 en vivo**
+
+![Animación del módulo 11 en vivo](docs/img/etapa4-mod11.gif)
+
+**Etapa 4 · Probar el síndrome**
+
+![Etapa 4: probar el síndrome](docs/img/etapa4-sindrome.png)
+
+**Etapa 4 · Laboratorio final**
+
+![Animación del laboratorio final: dañar y escanear el código](docs/img/etapa4-laboratorio.gif)
 
 ## 🎙️ Cómo presentar
 

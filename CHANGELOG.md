@@ -4,6 +4,10 @@ Todos los cambios visibles de la presentación. Formato basado en [Keep a Change
 
 ## [Sin publicar]
 
+### Documentación
+
+- El README muestra la portada y las pantallas interactivas de cada etapa, con capturas y GIFs.
+
 ### Corregido
 
 - El logo de la portada vuelve a verse con opacidad completa al subir a la portada.
